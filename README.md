@@ -11,7 +11,6 @@ Personal portfolio showcasing my experience, projects, and skills as a CS studen
 | **DSAVisualizer** — Interactive visualizer for 8 algorithms & data structures | React, Vite, JavaScript | [Demo](https://sean-kim05.github.io/DSAVisualizer/) · [Repo](https://github.com/sean-kim05/DSAVisualizer) |
 | **Job Application Tracker** — Full-stack app to manage and track job applications | React, Flask, SQLite | [Demo](https://job-tracker-application-ten.vercel.app/) · [Repo](https://github.com/sean-kim05/job-tracker-application) |
 | **Geospatial Data Visualizer** — Immersive geospatial interfaces for land conservation | TypeScript, Vue.js, React, Vite | — |
-| **DSP Messaging Platform** — Full-stack direct messaging module with offline support | Python, Flask, React, Tkinter | — |
 
 ## Tech Stack
 
