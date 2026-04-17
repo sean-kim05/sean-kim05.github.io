@@ -23,3 +23,4 @@ Personal portfolio showcasing my experience, projects, and skills as a CS studen
 
 - LinkedIn: [linkedin.com/in/seankim08](https://www.linkedin.com/in/seankim08)
 - GitHub: [github.com/sean-kim05](https://github.com/sean-kim05)
+ 
