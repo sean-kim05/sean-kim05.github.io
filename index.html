@@ -341,15 +341,40 @@
 
     <div class="exp-item">
       <div class="exp-meta">
-        <div class="exp-date">Jan 2025 — Present</div>
+        <div class="exp-date">Jun — Sep 2025</div>
+        <div class="exp-company">MIADVG</div>
+      </div>
+      <div>
+        <div class="exp-title">Software Engineer Intern</div>
+        <ul class="exp-bullets">
+          <li>Shipped scalable, production-ready React and TypeScript components styled with Tailwind CSS across a logistics SaaS dashboard's marketing site, onboarding flow, and redesigned interface, contributing to a 12% improvement in client retention</li>
+          <li>Built and consumed RESTful APIs in Node.js and Python to integrate frontend with PostgreSQL and MySQL-backed services, implementing state management, data fetching, and error handling for real-time features</li>
+          <li>Owned features end-to-end through design and code reviews on a bi-weekly release cycle, deploying across multiple client codebases via Git-based CI/CD pipelines on AWS</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">React</span>
+          <span class="exp-tag">TypeScript</span>
+          <span class="exp-tag">Tailwind CSS</span>
+          <span class="exp-tag">Node.js</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">PostgreSQL</span>
+          <span class="exp-tag">AWS</span>
+          <span class="exp-tag">CI/CD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Jan — May 2025</div>
         <div class="exp-company">CALIT2, UC Irvine</div>
       </div>
       <div>
         <div class="exp-title">Artificial Intelligence Research Assistant</div>
         <ul class="exp-bullets">
-          <li>Built an end-to-end surveillance and analytics platform for a commercial real estate client, combining real-time computer vision with foot-traffic tracking in a unified dashboard</li>
-          <li>Integrated and fine-tuned YOLO object detection models in TensorFlow for real-time person and activity detection on GPU-accelerated camera feeds, and developed the frontend camera system surfacing alerts across properties</li>
-          <li>Designed and built a full-stack QR-code foot traffic tracking system using React, Node.js, and MySQL, surfacing per-property visitor analytics on the client dashboard</li>
+          <li>Shipped a production AI surveillance platform for a commercial real estate client, integrating YOLO object detection with foot-traffic analytics across 10+ GPU-accelerated camera feeds into a React/TypeScript dashboard</li>
+          <li>Reduced false positive detection alerts by fine-tuning TensorFlow YOLO models in Python on domain-specific data, optimizing confidence thresholds and augmenting training sets for real-world deployment</li>
+          <li>Built a full-stack QR-code foot traffic system using React, Node.js, REST APIs, and MySQL, surfacing per-property heatmaps and hourly trends</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
@@ -359,29 +384,6 @@
           <span class="exp-tag">Node.js</span>
           <span class="exp-tag">MySQL</span>
           <span class="exp-tag">Computer Vision</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-date">Sep — Dec 2024</div>
-        <div class="exp-company">MIADVG</div>
-      </div>
-      <div>
-        <div class="exp-title">Software Engineer Intern</div>
-        <ul class="exp-bullets">
-          <li>Contributed to a client-facing SaaS dashboard for a logistics company as part of an intern cohort, collaborating with UX/UI, backend, and product teams in an agency environment</li>
-          <li>Built responsive React components from Figma designs across the marketing site, onboarding flow, and redesigned dashboard, contributing to a team effort that improved client retention by approximately 12%</li>
-          <li>Integrated frontend components with REST APIs in Node.js and Python, handling data fetching, state management, and error handling for real-time dashboard features</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="exp-tag">React</span>
-          <span class="exp-tag">JavaScript</span>
-          <span class="exp-tag">Node.js</span>
-          <span class="exp-tag">Python</span>
-          <span class="exp-tag">REST APIs</span>
-          <span class="exp-tag">Figma</span>
         </div>
       </div>
     </div>
@@ -421,10 +423,10 @@
       <div class="proj-number">01 / Algorithm Visualizer</div>
       <div class="proj-title"><a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="color:inherit;text-decoration:none;">DSAVisualizer</a></div>
       <p class="proj-desc">
-        Interactive visualizer for 8 algorithms and data structures — pathfinding (Dijkstra, A*, BFS, DFS), sorting, binary search trees, heaps, graphs, linked lists, and stacks/queues — with real-time animations, maze generation, and a built-in Claude AI assistant that explains each algorithm as it runs.
+        Interactive visualizer for 8 algorithm and data structure categories including pathfinding (Dijkstra, A*, BFS, DFS, Greedy Best-First with maze generation), sorting, BSTs, heaps, graphs, and linked lists. Built a Claude AI tutor that knows which algorithm the user is watching and what state it's in, so explanations are tailored to exactly what's happening on screen — streamed live token-by-token via a Flask backend with the Anthropic Python SDK.
       </p>
       <div class="proj-stack">
-        <span>React</span><span>Vite</span><span>Flask</span><span>Claude API</span><span>SSE</span>
+        <span>React</span><span>Vite</span><span>Flask</span><span>Anthropic SDK</span><span>Python</span><span>CI/CD</span>
       </div>
       <div style="margin-top:20px;display:flex;gap:12px;">
         <a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.06em;">↗ Live Demo</a>
@@ -436,10 +438,10 @@
       <div class="proj-number">02 / Collaborative Code Editor</div>
       <div class="proj-title">CollabCode</div>
       <p class="proj-desc">
-        Real-time collaborative code editor with multi-file support, live cursors and selections, AI code assistant (explain, fix, improve, generate via Claude API), version history with diff view, resizable output panel for running JS and Python, and password-protected rooms.
+        Real-time collaborative code editor (think Google Docs for code) using Monaco and WebSockets — multiple users write and run code together with live cursors, selections, and Figma-style follow mode. Backend keeps room data safe across server restarts by combining Redis for fast access with PostgreSQL as the source of truth, hydrating the cache on startup. Includes a Claude AI assistant streamed across four modes (explain, fix, improve, generate) plus in-browser JavaScript and sandboxed Python execution.
       </p>
       <div class="proj-stack">
-        <span>React</span><span>TypeScript</span><span>Flask</span><span>Socket.IO</span><span>Monaco</span><span>Claude API</span>
+        <span>React</span><span>TypeScript</span><span>Monaco</span><span>Flask-SocketIO</span><span>Redis</span><span>PostgreSQL</span><span>Claude API</span>
       </div>
       <div style="margin-top:20px;display:flex;gap:12px;">
         <a href="https://github.com/sean-kim05/collaborative-code-editor" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.06em;">↗ GitHub</a>
@@ -451,10 +453,10 @@
       <div class="proj-number">03 / Cloudflare AI App</div>
       <div class="proj-title">Briefly</div>
       <p class="proj-desc">
-        AI-powered daily standup bot built on Cloudflare. Type what you worked on in plain English and get a structured Yesterday / Today / Blockers standup generated by Llama 3.3. Standup history persisted per-user via Durable Objects.
+        AI standup generator on Cloudflare's serverless platform that converts messy engineer notes into clean Yesterday/Today/Blockers standups using Llama 3.3, with responses streaming live as they generate. Stores per-user history via Durable Objects with editing, deleting, multi-user team rooms, and one-click weekly summaries pulled from the last 7 standups. Multiple output formats (standard, bulleted, Jira-style) deployed end-to-end on Cloudflare's edge across 330+ cities.
       </p>
       <div class="proj-stack">
-        <span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3</span>
+        <span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3</span><span>JavaScript</span>
       </div>
       <div style="margin-top:20px;display:flex;gap:12px;">
         <a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.06em;">↗ Live Demo</a>
@@ -489,40 +491,54 @@
       <div class="skill-cat-label">Languages</div>
       <div class="skill-list">
         <div class="skill-item">Python</div>
-        <div class="skill-item">JavaScript / TypeScript</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">TypeScript</div>
+        <div class="skill-item">Java</div>
         <div class="skill-item">C / C++</div>
         <div class="skill-item">HTML / CSS</div>
-        <div class="skill-item">Java</div>
         <div class="skill-item">SQL</div>
       </div>
     </div>
     <div class="skill-cat">
-      <div class="skill-cat-label">Frameworks</div>
+      <div class="skill-cat-label">Frameworks &amp; Libraries</div>
       <div class="skill-list">
         <div class="skill-item">React</div>
         <div class="skill-item">Node.js</div>
         <div class="skill-item">Flask</div>
+        <div class="skill-item">Flask-SocketIO</div>
+        <div class="skill-item">Tailwind CSS</div>
+        <div class="skill-item">PyTorch</div>
+        <div class="skill-item">TensorFlow</div>
+        <div class="skill-item">NumPy</div>
+        <div class="skill-item">Pandas</div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-label">Tools &amp; Cloud</div>
+      <div class="skill-list">
+        <div class="skill-item">Git / GitHub</div>
+        <div class="skill-item">AWS</div>
+        <div class="skill-item">Cloudflare Workers</div>
+        <div class="skill-item">Docker</div>
+        <div class="skill-item">PostgreSQL</div>
+        <div class="skill-item">MySQL</div>
+        <div class="skill-item">Redis</div>
+        <div class="skill-item">Vite</div>
+        <div class="skill-item">CI/CD</div>
+        <div class="skill-item">REST APIs</div>
       </div>
     </div>
     <div class="skill-cat">
       <div class="skill-cat-label">AI / ML</div>
       <div class="skill-list">
-        <div class="skill-item">PyTorch</div>
-        <div class="skill-item">TensorFlow</div>
-        <div class="skill-item">NumPy</div>
-        <div class="skill-item">Pandas</div>
-        <div class="skill-item">Matplotlib</div>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <div class="skill-cat-label">Tools</div>
-      <div class="skill-list">
-        <div class="skill-item">Git</div>
-        <div class="skill-item">AWS</div>
-        <div class="skill-item">Vite</div>
-        <div class="skill-item">VS Code</div>
-        <div class="skill-item">MySQL</div>
-        <div class="skill-item">RStudio</div>
+        <div class="skill-item">LLMs</div>
+        <div class="skill-item">RAG</div>
+        <div class="skill-item">Fine-tuning</div>
+        <div class="skill-item">Computer Vision</div>
+        <div class="skill-item">Anthropic SDK</div>
+        <div class="skill-item">Cloudflare Workers AI</div>
+        <div class="skill-item">Claude Code</div>
+        <div class="skill-item">Cursor</div>
       </div>
     </div>
   </div>
