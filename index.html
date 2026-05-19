@@ -608,9 +608,9 @@
   <div class="hero-left">
     <h1>Sean <em>Kim</em><span class="h1-cursor"></span></h1>
     <p class="hero-role">Software Engineer <span class="pipe">/</span> AI Builder</p>
-    <p class="hero-sub">B.S. Computer Science — UC Irvine '27 · Irvine, CA</p>
+    <p class="hero-sub">B.S. Computer Science — UC Irvine '27 · GPA 3.5 · Irvine, CA</p>
     <p class="hero-desc">
-      I build <strong>full-stack products</strong> and <strong>AI-powered tools</strong> — from real-time collaborative editors to Cloudflare Workers running streaming LLMs. Previously shipped production React apps at <strong>MIADVG</strong>, fine-tuned YOLO models at <strong>CALIT2</strong>, and contributed to <strong>ZotGPT</strong> at UCI.
+      I build <strong>full-stack products</strong> and <strong>AI-powered tools</strong> — from real-time collaborative editors to Cloudflare Workers running streaming LLMs. Shipped React/TS apps serving <strong>10K+ users</strong> at <strong>MIADVG</strong>, built a CV-based threat-flagging system at <strong>CALIT2</strong>, and contributed to <strong>ZotGPT</strong> — now serving 36K+ UCI undergrads.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View work →</a>
@@ -649,9 +649,9 @@
       <div>
         <div class="exp-title">Software Engineer Intern</div>
         <ul class="exp-bullets">
-          <li>Built and shipped 3 production React/TypeScript applications styled with Tailwind CSS, delivered to client specifications</li>
-          <li>Built 10+ REST endpoints in Node.js across client projects, connecting React frontends to PostgreSQL and MySQL backends</li>
-          <li>Automated deployments to AWS EC2 via GitHub Actions CI/CD, enabling 2–3 releases per week across client projects</li>
+          <li>Shipped 3 production React/TypeScript apps serving 10,000+ users with Tailwind CSS to client specs in 2-week agile sprints</li>
+          <li>Wrote 10+ Node.js REST endpoints linking React frontends to PostgreSQL and MySQL with typed error handling</li>
+          <li>Automated 2–3 weekly releases to AWS EC2 via GitHub Actions CI/CD pipelines covering build, test, and deploy</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">React</span>
@@ -675,19 +675,18 @@
       <div>
         <div class="exp-title">Software Developer Intern</div>
         <ul class="exp-bullets">
-          <li>Developed Python Flask integrations connecting GPU-accelerated camera feeds to a React/JavaScript dashboard, displaying real-time detection data from 10+ camera feeds</li>
-          <li>Fine-tuned YOLO models with PyTorch, implementing transfer learning on camera footage from the client's environment to improve object detection accuracy in production</li>
-          <li>Implemented React dashboard views from Figma designs and integrated Node.js/MySQL endpoints displaying QR-code scan data for the client's foot traffic system</li>
+          <li>Built Python Flask services streaming real-time computer vision detections from 5+ GPU-accelerated cameras to a React dashboard for the client's security team</li>
+          <li>Fine-tuned YOLO via PyTorch transfer learning on client footage to handle their lighting and camera angles in production</li>
+          <li>Implemented a threat-flagging system that scored detections on a severity scale and surfaced prioritized alerts on the live security dashboard, deployed across multiple client properties</li>
         </ul>
         <div class="exp-tags">
-          <span class="exp-tag">React</span>
-          <span class="exp-tag">JavaScript</span>
           <span class="exp-tag">Python</span>
           <span class="exp-tag">Flask</span>
           <span class="exp-tag">PyTorch</span>
           <span class="exp-tag">YOLO</span>
-          <span class="exp-tag">Node.js</span>
-          <span class="exp-tag">MySQL</span>
+          <span class="exp-tag">Computer Vision</span>
+          <span class="exp-tag">React</span>
+          <span class="exp-tag">Transfer Learning</span>
         </div>
       </div>
     </div>
@@ -702,7 +701,7 @@
         <div class="exp-title">Undergraduate Research Assistant</div>
         <ul class="exp-bullets">
           <li>Built Python data preprocessing pipelines for iGPT (now ZotGPT at zotgpt.uci.edu), cleaning and normalizing UCI-specific documents for model training</li>
-          <li>Assisted with fine-tuning GPT-3.5 on UCI-specific data alongside faculty and the Office of Information Technology, contributing to a system now deployed across the UCI community</li>
+          <li>Contributed to fine-tuning GPT-3.5 on UCI-specific data with faculty and OIT; ZotGPT now serves 36,000+ UCI undergrads</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
@@ -726,11 +725,29 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <div class="proj-number">01 / Cloudflare AI App</div>
-      <div class="proj-meta-row"><span class="proj-status"><span class="proj-status-dot"></span>Apr 2026 — Present</span></div>
-      <div class="proj-title">Briefly</div>
+      <div class="proj-number">01 / Collaborative Code Editor</div>
+      <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Feb — Apr 2026</span></div>
+      <div class="proj-title"><a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" style="color:inherit;text-decoration:none;">CollabCode</a></div>
       <p class="proj-desc">
-        AI standup tool on Cloudflare Workers using Llama 3.3 with custom Server-Sent Events streaming via a TransformStream that captures full responses while forwarding tokens in real time. Durable Object backend with full CRUD across personal and team-room namespaces, plus an endpoint generating weekly summaries via a second LLM call.
+        Real-time collaborative code editor (Monaco + Flask-SocketIO) with live cursors, Figma-style follow mode, room chat, password-protected rooms, and a multi-file workspace. Three-layer persistence (Redis cache, PostgreSQL source of truth, SQLite snapshots) backs live sessions and replay. Claude integrated across four modes — generate, fix, explain, improve — with server-side code execution.
+      </p>
+      <div class="proj-stack">
+        <span>React</span><span>TypeScript</span><span>Monaco</span><span>Flask-SocketIO</span><span>Redis</span><span>Postgres</span><span>Claude API</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" class="proj-link proj-link-primary">↗ Live Demo</a>
+        <a href="https://github.com/sean-kim05/collaborative-code-editor" target="_blank" class="proj-link proj-link-muted">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-spot"></div>
+      <div class="proj-border"></div>
+      <div class="proj-number">02 / Cloudflare AI App</div>
+      <div class="proj-meta-row"><span class="proj-status"><span class="proj-status-dot"></span>Apr 2026 — Present</span></div>
+      <div class="proj-title"><a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" style="color:inherit;text-decoration:none;">Briefly</a></div>
+      <p class="proj-desc">
+        AI standup tool on Cloudflare Workers with Llama 3.3 and custom SSE streaming that forwards tokens live while capturing full responses server-side. Durable Object backend with full CRUD across personal and team-room namespaces, plus an endpoint generating weekly summaries via a second LLM call.
       </p>
       <div class="proj-stack">
         <span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3</span><span>JavaScript</span>
@@ -744,29 +761,11 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <div class="proj-number">02 / Collaborative Code Editor</div>
-      <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Feb — Apr 2026</span></div>
-      <div class="proj-title"><a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" style="color:inherit;text-decoration:none;">CollabCode</a></div>
-      <p class="proj-desc">
-        Real-time collaborative code editor (Monaco + Flask-SocketIO) with live cursors, Figma-style follow mode, room chat, password-protected rooms, and a multi-file workspace. Three-layer persistence system — Redis cache, PostgreSQL source of truth, SQLite snapshots — with Claude integrated across four modes (generate, fix, explain, improve) and sandboxed code execution.
-      </p>
-      <div class="proj-stack">
-        <span>React</span><span>TypeScript</span><span>Monaco</span><span>Flask-SocketIO</span><span>Redis</span><span>PostgreSQL</span><span>Claude API</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" class="proj-link proj-link-primary">↗ Live Demo</a>
-        <a href="https://github.com/sean-kim05/collaborative-code-editor" target="_blank" class="proj-link proj-link-muted">↗ GitHub</a>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-spot"></div>
-      <div class="proj-border"></div>
       <div class="proj-number">03 / Algorithm Visualizer</div>
-      <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Jan — Apr 2026</span></div>
+      <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Jan — Feb 2026</span></div>
       <div class="proj-title"><a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="color:inherit;text-decoration:none;">DSA Visualizer</a></div>
       <p class="proj-desc">
-        Interactive visualizer with 12 algorithm implementations across 8 categories — pathfinding (Dijkstra, A*, BFS, DFS, Greedy Best-First), sorting, BSTs, heaps, and graphs. Claude AI tutor with server-side prompt construction: the React frontend sends viz state while Flask injects context and streams responses via SSE.
+        Interactive visualizer covering 12 algorithms across pathfinding (Dijkstra, A*, BFS, DFS), sorting, BSTs, heaps, and graphs. Claude AI tutor where the React frontend sends visualization state, Flask injects context, and responses stream back via SSE.
       </p>
       <div class="proj-stack">
         <span>React</span><span>Vite</span><span>Flask</span><span>Anthropic SDK</span><span>Python</span><span>CI/CD</span>
@@ -859,12 +858,21 @@
       </div>
     </div>
     <div class="skill-cat reveal">
+      <div class="skill-cat-label">AI / ML</div>
+      <div class="skill-list">
+        <div class="skill-item">LLM integration</div>
+        <div class="skill-item">Fine-tuning</div>
+        <div class="skill-item">Transfer learning</div>
+        <div class="skill-item">Computer vision</div>
+        <div class="skill-item">Claude / Claude Code</div>
+      </div>
+    </div>
+    <div class="skill-cat reveal">
       <div class="skill-cat-label">Tools &amp; Cloud</div>
       <div class="skill-list">
         <div class="skill-item">Git</div>
         <div class="skill-item">AWS (EC2)</div>
-        <div class="skill-item">Cloudflare Workers</div>
-        <div class="skill-item">Workers AI</div>
+        <div class="skill-item">Cloudflare Workers (AI)</div>
         <div class="skill-item">Docker</div>
         <div class="skill-item">PostgreSQL</div>
         <div class="skill-item">MySQL</div>
@@ -873,18 +881,6 @@
         <div class="skill-item">CI/CD</div>
         <div class="skill-item">REST</div>
         <div class="skill-item">Anthropic SDK</div>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-label">AI / ML</div>
-      <div class="skill-list">
-        <div class="skill-item">LLMs</div>
-        <div class="skill-item">Fine-tuning</div>
-        <div class="skill-item">RAG</div>
-        <div class="skill-item">Computer Vision</div>
-        <div class="skill-item">YOLO</div>
-        <div class="skill-item">Streaming (SSE)</div>
-        <div class="skill-item">Claude Code</div>
       </div>
     </div>
   </div>
