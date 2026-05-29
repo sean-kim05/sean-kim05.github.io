@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
   <meta property="og:title" content="Sean Kim — Software Engineer"/>
-  <meta property="og:description" content="CS @ UCI. Building with React, TypeScript, Python, and Cloudflare."/>
+  <meta property="og:description" content="Full-stack software engineer building production systems — React/TypeScript, Python, and AI infrastructure at the intersection of LLMs, computer vision, and edge compute."/>
   <meta property="og:image" content="https://sean-kim05.github.io/preview.png"/>
   <meta property="og:url" content="https://sean-kim05.github.io"/>
   <meta property="og:type" content="website"/>
@@ -607,10 +607,10 @@
   <canvas id="constellation"></canvas>
   <div class="hero-left">
     <h1>Sean <em>Kim</em><span class="h1-cursor"></span></h1>
-    <p class="hero-role">Software Engineer <span class="pipe">/</span> AI Builder</p>
+    <p class="hero-role">Full-Stack Software Engineer <span class="pipe">/</span> ML &amp; AI Systems</p>
     <p class="hero-sub">B.S. Computer Science — UC Irvine '27 · Irvine, CA</p>
     <p class="hero-desc">
-      I build <strong>full-stack products</strong> and <strong>AI-powered tools</strong> — from real-time collaborative editors to Cloudflare Workers running streaming LLMs. Shipped React/TS apps serving <strong>10K+ users</strong> at <strong>MIADVG</strong>, built a CV-based threat-flagging system at <strong>CALIT2</strong>, and contributed to <strong>ZotGPT</strong> — now serving 36K+ UCI undergrads.
+      I build production systems where <strong>latency</strong> and <strong>reliability</strong> matter — React/TypeScript apps shipped to <strong>10,000+ users</strong> at <strong>MIADVG</strong>, real-time collaboration sustaining <strong>17ms p95 sync latency</strong>, and AI infrastructure behind <strong>ZotGPT</strong> (<strong>36,000+ undergraduates</strong>). Full-stack engineering at the intersection of LLMs, computer vision, and edge compute.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View work →</a>
@@ -623,10 +623,11 @@
         <span class="pill">TypeScript</span>
         <span class="pill">React</span>
         <span class="pill">Node.js</span>
+        <span class="pill">Express</span>
         <span class="pill">Flask</span>
         <span class="pill">PyTorch</span>
         <span class="pill">AWS EC2</span>
-        <span class="pill">Cloudflare</span>
+        <span class="pill">Cloudflare Workers</span>
         <span class="pill">PostgreSQL</span>
         <span class="pill">Anthropic SDK</span>
       </div>
@@ -649,9 +650,9 @@
       <div>
         <div class="exp-title">Software Engineer Intern</div>
         <ul class="exp-bullets">
-          <li>Shipped 3 production React/TypeScript apps serving 10,000+ users with Tailwind CSS to client specs in 2-week agile sprints</li>
+          <li>Shipped and maintained 3 React/TypeScript client web apps with Tailwind CSS, delivering features to 10,000+ combined users in 2-week sprint cycles</li>
           <li>Built REST endpoints with Express on Node.js across PostgreSQL and MySQL, unifying data access with typed error handling and consistent schemas</li>
-          <li>Automated 2–3 weekly releases to AWS EC2 via GitHub Actions CI/CD pipelines covering build, test, and deploy</li>
+          <li>Automated CI/CD on AWS EC2 via GitHub Actions, running build, test, and deploy on every push and shipping 2–3 releases weekly</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">React</span>
@@ -676,9 +677,9 @@
       <div>
         <div class="exp-title">Software Developer Intern</div>
         <ul class="exp-bullets">
-          <li>Built Python Flask services streaming real-time computer vision detections from 5+ GPU-accelerated cameras to a React security dashboard at 100–200ms latency</li>
-          <li>Fine-tuned YOLO via PyTorch transfer learning on client footage, improving mAP by 8 points over the stock baseline for production imaging conditions</li>
-          <li>Implemented a threat-flagging system that scored detections on a severity scale and surfaced prioritized alerts on the live security dashboard, deployed across multiple client properties</li>
+          <li>Developed a Python Flask computer vision system streaming GPU-accelerated detections from 5+ cameras to a React security dashboard at 100–200ms latency</li>
+          <li>Fine-tuned YOLO with PyTorch transfer learning on client footage, improving mAP by 8 points over the stock baseline for production imaging conditions</li>
+          <li>Implemented a threat-flagging feature in the security dashboard that flagged high-severity events (fires, vehicles, suspicious activity), reducing redundant alerts for the security team</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
@@ -701,8 +702,8 @@
       <div>
         <div class="exp-title">Undergraduate Research Assistant</div>
         <ul class="exp-bullets">
-          <li>Built Python data preprocessing pipelines for iGPT (now ZotGPT at zotgpt.uci.edu), cleaning and normalizing UCI-specific documents for model training</li>
-          <li>Contributed to fine-tuning GPT-3.5 on UCI-specific data with faculty and OIT; ZotGPT now serves 36,000+ UCI undergrads</li>
+          <li>Built Python pipelines that extracted and cleaned thousands of UCI documents from PDF and HTML into training-ready text for iGPT (now ZotGPT)</li>
+          <li>Tested and evaluated the fine-tuned GPT-3.5 model on UCI-specific queries for ZotGPT, now serving 36,000+ undergraduates</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
@@ -730,7 +731,7 @@
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Feb — Apr 2026</span></div>
       <div class="proj-title"><a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" style="color:inherit;text-decoration:none;">CollabCode</a></div>
       <p class="proj-desc">
-        Real-time collaborative code editor (Monaco + Flask-SocketIO) with live cursors, Figma-style follow mode, room chat, password-protected rooms, and a multi-file workspace — sustains 50 concurrent clients/room at 17ms p95 sync latency. Three-layer persistence (Redis cache, PostgreSQL source of truth, SQLite snapshots) backs live sessions and replay. Claude integrated across four modes — generate, fix, explain, improve — with server-side code execution.
+        Built a real-time collaborative code editor (live cursors, follow mode, multi-file workspace) sustaining 50 concurrent clients/room at 17ms p95 sync latency. Designed a three-layer persistence system (Redis cache, PostgreSQL source of truth, SQLite snapshots) backing live sessions and replay. Integrated the Claude API across four modes (generate, fix, explain, improve) with sandboxed server-side code execution.
       </p>
       <div class="proj-stack">
         <span>React</span><span>TypeScript</span><span>Monaco</span><span>Flask-SocketIO</span><span>Redis</span><span>Postgres</span><span>Claude API</span>
@@ -748,7 +749,7 @@
       <div class="proj-meta-row"><span class="proj-status"><span class="proj-status-dot"></span>Apr 2026 — Present</span></div>
       <div class="proj-title"><a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" style="color:inherit;text-decoration:none;">Briefly</a></div>
       <p class="proj-desc">
-        AI standup tool on Cloudflare Workers with Llama 3.3 and custom SSE streaming that forwards tokens live while capturing full responses server-side. Durable Object backend with full CRUD across personal and team-room namespaces, plus an endpoint generating weekly summaries via a second LLM call.
+        Engineered an AI standup tool on Cloudflare Workers with custom SSE streaming, forwarding Llama 3.3 tokens to the client live while capturing full responses server-side. Implemented a Durable Objects backend with CRUD across personal and team-room namespaces, plus an endpoint generating weekly summaries via a chained second LLM call.
       </p>
       <div class="proj-stack">
         <span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3</span><span>JavaScript</span>
@@ -766,7 +767,7 @@
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Jan — Feb 2026</span></div>
       <div class="proj-title"><a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="color:inherit;text-decoration:none;">DSA Visualizer</a></div>
       <p class="proj-desc">
-        Interactive visualizer covering 12 algorithms across pathfinding (Dijkstra, A*, BFS, DFS), sorting, BSTs, heaps, and graphs. Claude AI tutor where the React frontend sends visualization state, Flask injects context, and responses stream back via SSE.
+        Developed an interactive visualizer covering 12 algorithms across pathfinding (Dijkstra, A*, BFS, DFS), sorting, BSTs, heaps, and graphs. Added a Claude AI tutor that streams context-aware explanations via SSE from a Flask backend.
       </p>
       <div class="proj-stack">
         <span>React</span><span>Vite</span><span>Flask</span><span>Anthropic SDK</span><span>Python</span><span>CI/CD</span>
@@ -774,24 +775,6 @@
       <div class="proj-links">
         <a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" class="proj-link proj-link-primary">↗ Live Demo</a>
         <a href="https://github.com/sean-kim05/DSAVisualizer" target="_blank" class="proj-link proj-link-muted">↗ GitHub</a>
-      </div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-spot"></div>
-      <div class="proj-border"></div>
-      <div class="proj-number">04 / Full-Stack Web App</div>
-      <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Shipped</span></div>
-      <div class="proj-title"><a href="https://job-tracker-application-ten.vercel.app/" target="_blank" style="color:inherit;text-decoration:none;">Job Application Tracker</a></div>
-      <p class="proj-desc">
-        Full-stack app to manage a job search — track applications across stages (Applied, Interviewing, Offer, Rejected), view pipeline stats, search and filter entries, export to CSV, and update statuses inline. Company logos, toast notifications, keyboard shortcuts.
-      </p>
-      <div class="proj-stack">
-        <span>React</span><span>Python</span><span>Flask</span><span>SQLite</span><span>Vite</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://job-tracker-application-ten.vercel.app/" target="_blank" class="proj-link proj-link-primary">↗ Live Demo</a>
-        <a href="https://github.com/sean-kim05/job-tracker-application" target="_blank" class="proj-link proj-link-muted">↗ GitHub</a>
       </div>
     </div>
 
