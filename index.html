@@ -428,6 +428,18 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; display: block; background: var(--bg3);
   }
+  a.proj-media { text-decoration: none; cursor: pointer; }
+  .proj-shot {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top center; display: block;
+    transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
+  }
+  .proj-card:hover .proj-shot { transform: scale(1.04); }
+  .proj-media::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(232,228,217,0.04);
+    background: linear-gradient(to top, rgba(10,10,8,0.25), transparent 40%);
+  }
 
   /* EXPERIENCE */
   #experience { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -893,13 +905,9 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <div class="proj-media" aria-hidden="true">
-        <span class="proj-media-hint">Demo recording</span>
-        <video class="proj-video" muted loop playsinline preload="none" style="display:none;">
-          <!-- Drop a screen recording in this folder, then uncomment & set the file below: -->
-          <!-- <source src="collabcode-demo.mp4" type="video/mp4"> -->
-        </video>
-      </div>
+      <a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" rel="noopener" class="proj-media" aria-label="Open CollabCode live demo">
+        <img class="proj-shot" src="collabcode-demo.png" alt="CollabCode — real-time collaborative code editor" loading="lazy"/>
+      </a>
       <div class="proj-number">01 / Collaborative Code Editor</div>
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Feb — Apr 2026</span></div>
       <div class="proj-title"><a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" style="color:inherit;text-decoration:none;">CollabCode</a></div>
@@ -925,13 +933,9 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <div class="proj-media" aria-hidden="true">
-        <span class="proj-media-hint">Demo recording</span>
-        <video class="proj-video" muted loop playsinline preload="none" style="display:none;">
-          <!-- Drop a screen recording in this folder, then uncomment & set the file below: -->
-          <!-- <source src="briefly-demo.mp4" type="video/mp4"> -->
-        </video>
-      </div>
+      <a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" rel="noopener" class="proj-media" aria-label="Open Briefly live demo">
+        <img class="proj-shot" src="briefly-demo.png" alt="Briefly — AI standup tool on Cloudflare Workers" loading="lazy"/>
+      </a>
       <div class="proj-number">02 / Cloudflare AI App</div>
       <div class="proj-meta-row"><span class="proj-status"><span class="proj-status-dot"></span>Apr 2026 — Present</span></div>
       <div class="proj-title"><a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" style="color:inherit;text-decoration:none;">Briefly</a></div>
@@ -950,13 +954,9 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <div class="proj-media" aria-hidden="true">
-        <span class="proj-media-hint">Demo recording</span>
-        <video class="proj-video" muted loop playsinline preload="none" style="display:none;">
-          <!-- Drop a screen recording in this folder, then uncomment & set the file below: -->
-          <!-- <source src="dsa-demo.mp4" type="video/mp4"> -->
-        </video>
-      </div>
+      <a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" rel="noopener" class="proj-media" aria-label="Open DSA Visualizer live demo">
+        <img class="proj-shot" src="dsa-demo.png" alt="DSA Visualizer — interactive algorithm visualizer" loading="lazy"/>
+      </a>
       <div class="proj-number">03 / Algorithm Visualizer</div>
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Jan — Feb 2026</span></div>
       <div class="proj-title"><a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="color:inherit;text-decoration:none;">DSA Visualizer</a></div>
