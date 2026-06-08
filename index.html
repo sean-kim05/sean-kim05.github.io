@@ -14,20 +14,27 @@
   <meta name="twitter:image" content="https://sean-kim05.github.io/preview.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sean Kim — CS @ UCI</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Geist:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #0a0a08;
-    --bg2: #111110;
-    --bg3: #1a1a17;
-    --text: #e8e4d9;
-    --muted: #7a7568;
-    --accent: #c8f04a;
-    --accent2: #f0a04a;
-    --border: rgba(232,228,217,0.08);
-    --serif: 'DM Serif Display', Georgia, serif;
+    /* Monochrome dark + champagne accent */
+    --bg: #0d0d0f;
+    --bg-rgb: 13,13,15;
+    --bg2: #16161a;
+    --bg3: #1f1f24;
+    --text: #f0ede6;
+    --text-rgb: 240,237,230;
+    --muted: #8b8780;
+    --accent: #d8cdb8;
+    --accent-rgb: 216,205,184;
+    --accent2: #c4b596;
+    --accent2-rgb: 196,181,150;
+    --on-accent: #0d0d0f;
+    --border: rgba(var(--text-rgb),0.10);
+    --serif: 'Playfair Display', Georgia, serif;
     --mono: 'DM Mono', monospace;
-    --sans: 'Instrument Sans', sans-serif;
+    --sans: 'Geist', system-ui, -apple-system, sans-serif;
+    /* REVERT to pure B&W: bg #000000 (0,0,0) · bg2 #0e0e0e · bg3 #1a1a1a · text #ffffff (255,255,255) · muted #8a8a8a · accent #ffffff (255,255,255) · accent2 #9a9a9a (154,154,154) · on-accent #000000 */
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -40,14 +47,14 @@
     overflow-x: hidden;
     position: relative;
   }
-  ::selection { background: var(--accent); color: #0a0a08; }
+  ::selection { background: var(--accent); color: var(--on-accent); }
 
   /* Background grid + noise */
   .grid-bg {
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
-      linear-gradient(rgba(232,228,217,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,228,217,0.025) 1px, transparent 1px);
+      linear-gradient(rgba(var(--text-rgb),0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--text-rgb),0.025) 1px, transparent 1px);
     background-size: 64px 64px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
@@ -64,14 +71,14 @@
     position: fixed; top: 0; left: 0; height: 2px; width: 0%;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     z-index: 200; transition: width 0.05s linear;
-    box-shadow: 0 0 12px rgba(200,240,74,0.45);
+    box-shadow: 0 0 12px rgba(var(--accent-rgb),0.45);
   }
 
   /* Cursor glow */
   .cursor-glow {
     position: fixed; width: 480px; height: 480px;
     border-radius: 50%; pointer-events: none; z-index: 0;
-    background: radial-gradient(circle, rgba(200,240,74,0.07) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(var(--accent-rgb),0.07) 0%, transparent 65%);
     transform: translate(-50%, -50%);
     transition: opacity 0.3s;
     mix-blend-mode: screen;
@@ -91,13 +98,13 @@
   }
   .proj-card .proj-spot {
     position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(360px circle at var(--mx) var(--my), rgba(200,240,74,0.10), transparent 45%);
+    background: radial-gradient(360px circle at var(--mx) var(--my), rgba(var(--accent-rgb),0.10), transparent 45%);
     opacity: 0; transition: opacity 0.35s ease;
   }
   .proj-card:hover .proj-spot { opacity: 1; }
   .proj-card .proj-border {
     position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
-    background: radial-gradient(280px circle at var(--mx) var(--my), rgba(200,240,74,0.45), transparent 40%);
+    background: radial-gradient(280px circle at var(--mx) var(--my), rgba(var(--accent-rgb),0.45), transparent 40%);
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -111,7 +118,7 @@
   /* Glitch hover on h1 */
   h1 { position: relative; }
   h1 em { display: inline-block; transition: transform 0.4s cubic-bezier(.2,.7,.3,1); }
-  h1:hover em { transform: translateX(6px) rotate(-2deg); }
+  h1:hover em { transform: translateX(6px); }
 
   /* Magnetic button base */
   .btn-primary, .btn-ghost { will-change: transform; }
@@ -124,7 +131,7 @@
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    background: rgba(10,10,8,0.65);
+    background: rgba(var(--bg-rgb),0.72);
   }
   .nav-logo {
     font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.08em;
@@ -136,7 +143,7 @@
     font-family: var(--serif); font-size: 11px; color: var(--accent);
     transform: rotate(-3deg); transition: transform 0.3s ease, background 0.3s ease;
   }
-  .nav-logo:hover .nav-logo-mark { transform: rotate(3deg); background: rgba(200,240,74,0.08); }
+  .nav-logo:hover .nav-logo-mark { transform: rotate(3deg); background: rgba(var(--accent-rgb),0.08); }
   .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
     font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none;
@@ -150,13 +157,14 @@
   }
   .nav-links a:hover { color: var(--text); }
   .nav-links a:hover::before { transform: scaleX(1); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
   .nav-cta {
     font-family: var(--mono); font-size: 11px; color: var(--accent);
-    border: 1px solid rgba(200,240,74,0.3); padding: 7px 14px; border-radius: 2px;
+    border: 1px solid rgba(var(--accent-rgb),0.3); padding: 7px 14px; border-radius: 2px;
     text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
     transition: background 0.2s, border-color 0.2s;
   }
-  .nav-cta:hover { background: rgba(200,240,74,0.08); border-color: var(--accent); }
+  .nav-cta:hover { background: rgba(var(--accent-rgb),0.08); border-color: var(--accent); }
 
   /* HERO */
   .hero {
@@ -176,7 +184,7 @@
     position: absolute;
     top: -200px; right: -200px;
     width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(200,240,74,0.06) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(var(--accent-rgb),0.06) 0%, transparent 65%);
     pointer-events: none;
   }
   .hero::after {
@@ -184,7 +192,7 @@
     position: absolute;
     bottom: -100px; left: 20%;
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(240,160,74,0.04) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(var(--accent2-rgb),0.04) 0%, transparent 65%);
     pointer-events: none;
   }
   .hero-left { position: relative; z-index: 1; }
@@ -192,21 +200,33 @@
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--mono); font-size: 11px; color: var(--accent);
     letter-spacing: 0.1em; text-transform: uppercase;
-    border: 1px solid rgba(200,240,74,0.25);
+    border: 1px solid rgba(var(--accent-rgb),0.25);
+    background: rgba(var(--accent-rgb),0.06);
     padding: 6px 14px; border-radius: 2px;
     margin-bottom: 28px;
   }
   .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   h1 {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(56px, 7vw, 104px);
-    line-height: 0.96;
-    letter-spacing: -0.025em;
+    line-height: 1.0;
+    letter-spacing: -0.005em;
     margin-bottom: 16px;
     animation: fadeUp 0.9s ease both;
   }
-  h1 em { font-style: italic; color: var(--accent2); }
+  h1 em {
+    font-style: normal;
+    color: var(--accent2);
+    background: linear-gradient(115deg, var(--accent) 0%, var(--accent2) 50%, var(--accent) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 6px 26px rgba(var(--accent-rgb),0.22));
+    animation: sheen 9s ease-in-out infinite;
+  }
+  @keyframes sheen { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+  @media (prefers-reduced-motion: reduce) { h1 em { animation: none; } }
   h1 .h1-cursor {
     display: inline-block; width: 4px; height: 0.85em;
     background: var(--accent); margin-left: 8px; vertical-align: text-bottom;
@@ -225,7 +245,7 @@
     animation: fadeUp 0.8s 0.15s ease both;
   }
   .hero-desc {
-    font-size: 17px; color: rgba(232,228,217,0.72);
+    font-size: 17px; color: rgba(var(--text-rgb),0.72);
     max-width: 480px; line-height: 1.7;
     margin-bottom: 44px;
     animation: fadeUp 0.8s 0.2s ease both;
@@ -237,13 +257,13 @@
   }
   .btn-primary {
     display: inline-block;
-    background: var(--accent); color: #0a0a08;
+    background: var(--accent); color: var(--on-accent);
     font-family: var(--mono); font-size: 12px; font-weight: 500;
     letter-spacing: 0.06em; text-transform: uppercase;
     text-decoration: none; padding: 14px 28px;
     border-radius: 2px; transition: transform 0.2s, box-shadow 0.2s;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,240,74,0.2); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--accent-rgb),0.2); }
   .btn-ghost {
     display: inline-block;
     border: 1px solid var(--border);
@@ -259,7 +279,7 @@
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 6px; overflow: hidden;
-    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,228,217,0.02);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(var(--text-rgb),0.02);
   }
   .terminal-bar {
     display: flex; align-items: center; gap: 8px;
@@ -330,7 +350,7 @@
     padding: 4px 10px; border-radius: 2px;
     transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
-  .pill:hover { border-color: rgba(200,240,74,0.3); color: var(--accent); background: rgba(200,240,74,0.04); }
+  .pill:hover { border-color: rgba(var(--accent-rgb),0.3); color: var(--accent); background: rgba(var(--accent-rgb),0.04); }
 
   @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
@@ -347,7 +367,11 @@
     line-height: 1.1; letter-spacing: -0.02em;
     margin-bottom: 56px;
   }
-  h2 em { font-style: italic; color: var(--muted); }
+  h2 em { font-style: normal; color: var(--muted); }
+  /* Display — Playfair name (heavy), Geist headings */
+  h1 { font-weight: 800; }
+  h2, .stat-mini-num, .proj-title, .proj-stat-num, .exp-title, .about-monogram { font-weight: 600; }
+  .nav-logo-mark, .marquee-item { font-weight: 500; }
 
   /* ABOUT */
   #about { background: var(--bg); }
@@ -364,7 +388,7 @@
     position: relative; color: var(--accent);
     transition: transform 0.3s ease, border-color 0.3s ease;
   }
-  .about-avatar:hover { transform: translateY(-3px); border-color: rgba(200,240,74,0.3); }
+  .about-avatar:hover { transform: translateY(-3px); border-color: rgba(var(--accent-rgb),0.3); }
   .about-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .about-avatar .about-art { width: 80px; height: 80px; display: block; }
   .about-avatar .about-monogram {
@@ -373,10 +397,10 @@
   }
   .about-avatar::after {
     content: ''; position: absolute; inset: 0; pointer-events: none;
-    box-shadow: inset 0 0 40px -10px rgba(200,240,74,0.06);
+    box-shadow: inset 0 0 40px -10px rgba(var(--accent-rgb),0.06);
   }
   .about-body p {
-    font-size: 17px; line-height: 1.8; color: rgba(232,228,217,0.78);
+    font-size: 17px; line-height: 1.8; color: rgba(var(--text-rgb),0.78);
     margin: 0 auto 20px; max-width: 620px;
   }
   .about-body p strong { color: var(--text); font-weight: 500; }
@@ -396,7 +420,7 @@
     position: relative; width: 100%; aspect-ratio: 16 / 9;
     border-radius: 4px; overflow: hidden; margin-bottom: 24px;
     background:
-      linear-gradient(135deg, rgba(200,240,74,0.06), rgba(240,160,74,0.04)),
+      linear-gradient(135deg, rgba(var(--accent-rgb),0.06), rgba(var(--accent2-rgb),0.04)),
       var(--bg3);
     border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
@@ -422,8 +446,8 @@
   .proj-card:hover .proj-shot { transform: scale(1.04); }
   .proj-media::after {
     content: ''; position: absolute; inset: 0; pointer-events: none;
-    box-shadow: inset 0 0 0 1px rgba(232,228,217,0.04);
-    background: linear-gradient(to top, rgba(10,10,8,0.25), transparent 40%);
+    box-shadow: inset 0 0 0 1px rgba(var(--text-rgb),0.04);
+    background: linear-gradient(to top, rgba(var(--bg-rgb),0.45), transparent 45%);
   }
 
   /* EXPERIENCE */
@@ -465,7 +489,7 @@
   }
   .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .exp-bullets li {
-    font-size: 15px; color: rgba(232,228,217,0.72); line-height: 1.7;
+    font-size: 15px; color: rgba(var(--text-rgb),0.72); line-height: 1.7;
     padding-left: 22px; position: relative;
   }
   .exp-bullets li::before {
@@ -482,7 +506,7 @@
     padding: 4px 9px; border-radius: 2px; letter-spacing: 0.03em;
     transition: color 0.2s, border-color 0.2s;
   }
-  .exp-tag:hover { color: var(--text); border-color: rgba(232,228,217,0.18); }
+  .exp-tag:hover { color: var(--text); border-color: rgba(var(--text-rgb),0.18); }
 
   /* PROJECTS */
   #projects { background: var(--bg); }
@@ -500,7 +524,7 @@
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--mono); font-size: 10px; color: var(--accent);
     letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 4px 10px; border: 1px solid rgba(200,240,74,0.25);
+    padding: 4px 10px; border: 1px solid rgba(var(--accent-rgb),0.25);
     border-radius: 2px;
   }
   .proj-status-shipped { color: var(--muted); border-color: var(--border); }
@@ -510,7 +534,7 @@
     animation: pulse 2s infinite;
   }
   .proj-card:hover {
-    border-color: rgba(200,240,74,0.3);
+    border-color: rgba(var(--accent-rgb),0.3);
     background: var(--bg3);
     transform: translateY(-2px);
   }
@@ -525,7 +549,7 @@
   .proj-card::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(circle at top right, rgba(200,240,74,0.06), transparent 60%);
+    background: radial-gradient(circle at top right, rgba(var(--accent-rgb),0.06), transparent 60%);
     opacity: 0; transition: opacity 0.4s ease;
     pointer-events: none;
   }
@@ -534,14 +558,24 @@
   .proj-title { font-family: var(--serif); font-size: 30px; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.01em; }
   .proj-title a { transition: color 0.2s; }
   .proj-title a:hover { color: var(--accent) !important; }
-  .proj-desc { font-size: 14px; color: rgba(232,228,217,0.6); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+  .proj-stat {
+    display: inline-flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 12px 16px; margin-bottom: 18px;
+    background: rgba(var(--accent-rgb),0.05); border: 1px solid rgba(var(--accent-rgb),0.18); border-radius: 3px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .proj-card:hover .proj-stat { border-color: rgba(var(--accent-rgb),0.32); background: rgba(var(--accent-rgb),0.07); }
+  .proj-stat-num { font-family: var(--serif); font-size: 26px; color: var(--accent); line-height: 1; }
+  .proj-stat-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .proj-stat-sep { color: var(--muted); margin: 0 2px; }
+  .proj-desc { font-size: 14px; color: rgba(var(--text-rgb),0.6); line-height: 1.7; margin-bottom: 24px; flex: 1; }
   .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
   .proj-stack span {
     font-family: var(--mono); font-size: 10px; color: var(--accent);
-    border: 1px solid rgba(200,240,74,0.2); padding: 3px 8px; border-radius: 2px;
+    border: 1px solid rgba(var(--accent-rgb),0.2); padding: 3px 8px; border-radius: 2px;
     transition: background 0.2s, border-color 0.2s;
   }
-  .proj-card:hover .proj-stack span { border-color: rgba(200,240,74,0.35); background: rgba(200,240,74,0.04); }
+  .proj-card:hover .proj-stack span { border-color: rgba(var(--accent-rgb),0.35); background: rgba(var(--accent-rgb),0.04); }
   .proj-links { display: flex; gap: 16px; margin-top: auto; }
   .proj-link {
     font-family: var(--mono); font-size: 11px; text-decoration: none;
@@ -561,10 +595,10 @@
     background: var(--bg); border: 1px solid var(--border); padding: 32px 28px;
     transition: background 0.3s, border-color 0.3s;
   }
-  .skill-cat:hover { background: var(--bg3); border-color: rgba(240,160,74,0.2); }
+  .skill-cat:hover { background: var(--bg3); border-color: rgba(var(--accent2-rgb),0.2); }
   .skill-cat-label { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
   .skill-list { display: flex; flex-direction: column; gap: 10px; }
-  .skill-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(232,228,217,0.8); transition: color 0.2s; }
+  .skill-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(var(--text-rgb),0.8); transition: color 0.2s; }
   .skill-item::before {
     content: ''; width: 4px; height: 4px; background: var(--muted); border-radius: 50%; flex-shrink: 0;
     transition: background 0.2s, transform 0.2s;
@@ -604,13 +638,13 @@
     content: ''; position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,240,74,0.04) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(var(--accent-rgb),0.04) 0%, transparent 65%);
     pointer-events: none;
   }
   .contact-wrap { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
   #contact h2 { margin-bottom: 24px; font-size: clamp(44px, 5vw, 72px); }
   .contact-sub {
-    font-size: 18px; color: rgba(232,228,217,0.65);
+    font-size: 18px; color: rgba(var(--text-rgb),0.65);
     max-width: 540px; margin: 0 auto 56px; line-height: 1.7; text-align: center;
   }
   .contact-grid {
@@ -709,21 +743,22 @@
       <span>sean-kim.dev</span>
     </span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="Sean_Kim_Resume.pdf" target="_blank" rel="noopener">Resume ↓</a></li>
-    <li><a href="#contact" class="nav-cta">Contact ↗</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="Sean_Kim_Resume.pdf" target="_blank" rel="noopener">Resume ↓</a></li>
+      <li><a href="#contact" class="nav-cta">Contact ↗</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <canvas id="constellation" aria-hidden="true"></canvas>
   <div class="hero-left">
-    <div class="hero-tag">Open to Summer 2026 SWE Internships <span style="opacity:0.5; margin:0 6px;">·</span> New-Grad 2027</div>
     <h1>Sean <em>Kim</em><span class="h1-cursor"></span></h1>
     <p class="hero-role">Full-Stack Software Engineer <span class="pipe">/</span> ML &amp; AI Systems</p>
     <p class="hero-sub">B.S. Computer Science — UC Irvine '27 · Irvine, CA</p>
@@ -787,7 +822,7 @@
         clean abstractions, measurable performance, and tools that make other people faster.
       </p>
       <div class="about-now">
-        Currently <strong>open to Summer 2026 SWE internships</strong> &amp; building AI-native tools
+        Currently <strong>building AI-native tools</strong> &amp; shipping full-stack products
       </div>
     </div>
   </div>
@@ -885,18 +920,15 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" rel="noopener" class="proj-media" aria-label="Open CollabCode live demo">
-        <img class="proj-shot" src="collabcode-demo.png" alt="CollabCode — real-time collaborative code editor" loading="lazy"/>
-      </a>
       <div class="proj-number">01 / Collaborative Code Editor</div>
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Feb — Apr 2026</span></div>
       <div class="proj-title"><a href="https://collaborative-code-editor-livid.vercel.app" target="_blank" style="color:inherit;text-decoration:none;">CollabCode</a></div>
-      <div class="proj-stat" style="display:inline-flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:12px 16px; margin-bottom:18px; background:rgba(200,240,74,0.05); border:1px solid rgba(200,240,74,0.18); border-radius:3px;">
-        <span style="font-family:var(--serif); font-size:26px; color:var(--accent); line-height:1;">50</span>
-        <span style="font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;">concurrent clients/room</span>
-        <span style="color:var(--muted); margin:0 2px;">·</span>
-        <span style="font-family:var(--serif); font-size:26px; color:var(--accent); line-height:1;">17ms</span>
-        <span style="font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;">p95 sync latency</span>
+      <div class="proj-stat">
+        <span class="proj-stat-num">50</span>
+        <span class="proj-stat-label">concurrent clients/room</span>
+        <span class="proj-stat-sep">·</span>
+        <span class="proj-stat-num">17ms</span>
+        <span class="proj-stat-label">p95 sync latency</span>
       </div>
       <p class="proj-desc">
         Built a real-time collaborative code editor (live cursors, follow mode, multi-file workspace) sustaining production performance under load. Designed a three-layer persistence system (Redis cache, PostgreSQL source of truth, SQLite snapshots) backing live sessions and replay. Integrated the Claude API across four modes (generate, fix, explain, improve) with sandboxed server-side code execution.
@@ -913,12 +945,16 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" rel="noopener" class="proj-media" aria-label="Open Briefly live demo">
-        <img class="proj-shot" src="briefly-demo.png" alt="Briefly — AI standup tool on Cloudflare Workers" loading="lazy"/>
-      </a>
       <div class="proj-number">02 / Cloudflare AI App</div>
       <div class="proj-meta-row"><span class="proj-status"><span class="proj-status-dot"></span>Apr 2026 — Present</span></div>
       <div class="proj-title"><a href="https://cf-ai-standup.skim8705.workers.dev" target="_blank" style="color:inherit;text-decoration:none;">Briefly</a></div>
+      <div class="proj-stat">
+        <span class="proj-stat-num">Live</span>
+        <span class="proj-stat-label">SSE token streaming</span>
+        <span class="proj-stat-sep">·</span>
+        <span class="proj-stat-num">2-step</span>
+        <span class="proj-stat-label">chained-LLM summaries</span>
+      </div>
       <p class="proj-desc">
         Engineered an AI standup tool on Cloudflare Workers with custom SSE streaming, forwarding Llama 3.3 tokens to the client live while capturing full responses server-side. Implemented a Durable Objects backend with CRUD across personal and team-room namespaces, plus an endpoint generating weekly summaries via a chained second LLM call.
       </p>
@@ -934,12 +970,16 @@
     <div class="proj-card reveal">
       <div class="proj-spot"></div>
       <div class="proj-border"></div>
-      <a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" rel="noopener" class="proj-media" aria-label="Open DSA Visualizer live demo">
-        <img class="proj-shot" src="dsa-demo.png" alt="DSA Visualizer — interactive algorithm visualizer" loading="lazy"/>
-      </a>
       <div class="proj-number">03 / Algorithm Visualizer</div>
       <div class="proj-meta-row"><span class="proj-status proj-status-shipped"><span class="proj-status-dot"></span>Jan — Feb 2026</span></div>
       <div class="proj-title"><a href="https://sean-kim05.github.io/DSAVisualizer/" target="_blank" style="color:inherit;text-decoration:none;">DSA Visualizer</a></div>
+      <div class="proj-stat">
+        <span class="proj-stat-num">12</span>
+        <span class="proj-stat-label">algorithms visualized</span>
+        <span class="proj-stat-sep">·</span>
+        <span class="proj-stat-num">AI</span>
+        <span class="proj-stat-label">Claude tutor via SSE</span>
+      </div>
       <p class="proj-desc">
         Developed an interactive visualizer covering 12 algorithms across pathfinding (Dijkstra, A*, BFS, DFS), sorting, BSTs, heaps, and graphs. Added a Claude AI tutor that streams context-aware explanations via SSE from a Flask backend.
       </p>
@@ -1093,6 +1133,9 @@
   // Respect users who prefer reduced motion
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Current accent as "r,g,b" — canvas can't read CSS vars; refreshed on theme change
+  let accentRGB = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '63,185,80';
+
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -1161,7 +1204,7 @@
     { type: 'cmd', text: 'cat profile.json' },
     { type: 'kv', key: 'location', val: '"Irvine, CA"' },
     { type: 'kv', key: 'focus', val: '"full-stack + AI"' },
-    { type: 'kv', key: 'status', val: '"open to SWE roles"' },
+    { type: 'kv', key: 'status', val: '"building full-stack + AI"' },
     { type: 'prompt' },
   ];
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -1301,7 +1344,7 @@
           p.x += dxm / dm * 0.3;
           p.y += dym / dm * 0.3;
         }
-        ctx.fillStyle = 'rgba(200,240,74,0.5)';
+        ctx.fillStyle = 'rgba(' + accentRGB + ',0.5)';
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
       }
       for (let i = 0; i < particles.length; i++) {
@@ -1311,7 +1354,7 @@
           const d = Math.hypot(dx, dy);
           if (d < MAX_DIST) {
             const alpha = (1 - d / MAX_DIST) * 0.22;
-            ctx.strokeStyle = `rgba(200,240,74,${alpha})`;
+            ctx.strokeStyle = `rgba(${accentRGB},${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
