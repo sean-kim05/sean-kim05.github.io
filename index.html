@@ -843,9 +843,9 @@
       <div>
         <div class="exp-title">Software Engineer Intern</div>
         <ul class="exp-bullets">
-          <li>Shipped and maintained 3 production React/TypeScript web apps with Tailwind CSS, serving 10,000+ combined users in 2-week Agile sprint cycles</li>
-          <li>Developed REST APIs with Express on Node.js backed by PostgreSQL and MySQL, powering OAuth authentication and 10+ third-party integrations including Stripe and Twilio</li>
-          <li>Automated AWS EC2 deployment via a GitHub Actions CI/CD pipeline running build, Jest tests, and deploy on each merge to main — blocking releases on failures while shipping 2–3 weekly</li>
+          <li>Shipped and maintained 3 production React and TypeScript web applications with Tailwind CSS, used across products with 10,000+ combined users and features delivered in 2-week Agile sprints</li>
+          <li>Developed Express REST APIs on Node.js backed by PostgreSQL and MySQL, supporting OAuth 2.0 flows and third-party integrations such as Stripe and Twilio</li>
+          <li>Automated AWS EC2 deployment with a GitHub Actions CI/CD pipeline that ran builds and a Vitest unit test suite on each merge to main, blocking failed releases while shipping 2–3 releases weekly</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">React</span>
@@ -873,9 +873,9 @@
       <div>
         <div class="exp-title">Software Developer Intern</div>
         <ul class="exp-bullets">
-          <li>Developed a Python Flask-SocketIO backend streaming real-time detections from 5+ GPU-accelerated cameras to a React security dashboard over WebSockets at 100–200ms latency</li>
-          <li>Fine-tuned YOLO with PyTorch transfer learning on client footage, improving mAP by 8 points over the stock baseline for production imaging conditions</li>
-          <li>Built a Python event-processing pipeline that prioritized fire, vehicle, and suspicious-activity detections by severity, filtered duplicates, and persisted events to PostgreSQL for the dashboard</li>
+          <li>Developed a Python Flask-SocketIO backend that streamed real-time detections from 5+ camera feeds to a React security dashboard over WebSockets, sustaining 100–200ms event-delivery latency</li>
+          <li>Built a Python pipeline that removed duplicate detections with a Redis TTL cache and routed fire, vehicle, and suspicious-activity events through RabbitMQ priority queues</li>
+          <li>Fine-tuned YOLO with PyTorch transfer learning on client footage, improving validation mAP by 8 points over the stock baseline</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
@@ -885,7 +885,8 @@
           <span class="exp-tag">Computer Vision</span>
           <span class="exp-tag">WebSockets</span>
           <span class="exp-tag">React</span>
-          <span class="exp-tag">PostgreSQL</span>
+          <span class="exp-tag">Redis</span>
+          <span class="exp-tag">RabbitMQ</span>
           <span class="exp-tag">Transfer Learning</span>
         </div>
       </div>
@@ -900,14 +901,16 @@
       <div>
         <div class="exp-title">Undergraduate Research Assistant</div>
         <ul class="exp-bullets">
-          <li>Built Python pipelines that extracted and cleaned thousands of UCI documents from PDF and HTML into training-ready text for iGPT (now ZotGPT)</li>
-          <li>Tested and evaluated the fine-tuned GPT-3.5 model on UCI-specific queries for ZotGPT, now serving 36,000+ undergraduates</li>
+          <li>Created Python ETL pipelines with BeautifulSoup, PyPDF2, and Pandas that cleaned and normalized thousands of UCI PDF/HTML documents into training-ready text for iGPT development</li>
+          <li>Evaluated fine-tuned GPT-3.5 responses on UCI-specific queries during early-stage iGPT development, a project that later evolved into ZotGPT for UCI students</li>
         </ul>
         <div class="exp-tags">
           <span class="exp-tag">Python</span>
+          <span class="exp-tag">BeautifulSoup</span>
+          <span class="exp-tag">PyPDF2</span>
+          <span class="exp-tag">Pandas</span>
           <span class="exp-tag">GPT-3.5</span>
           <span class="exp-tag">Fine-tuning</span>
-          <span class="exp-tag">Data Preprocessing</span>
           <span class="exp-tag">ZotGPT</span>
         </div>
       </div>
