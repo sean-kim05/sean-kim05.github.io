@@ -15,6 +15,24 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image" content="https://sean-kim05.github.io/preview.png"/>
 
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sean Kim",
+    "url": "https://sean-kim05.github.io",
+    "jobTitle": "Software Engineer",
+    "email": "mailto:skim8705@gmail.com",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of California, Irvine" },
+    "sameAs": [
+      "https://github.com/sean-kim05",
+      "https://linkedin.com/in/seankim08"
+    ],
+    "knowsAbout": ["Full-stack development", "Real-time systems", "AI engineering", "React", "TypeScript", "Python"]
+  }
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23e33b26'/%3E%3C/svg%3E"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -188,6 +206,22 @@
     .term-input-row .s { font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace; font-size:12.5px; color:#4f9dff; flex:none; margin-left:-4px; }
     #termInput { flex:1; background:transparent; border:none; outline:none; color:#f2f2f0; font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace; font-size:12.5px; caret-color:#26cc41; }
 
+    /* ---------- CTA BUTTONS + LAUNCHER ---------- */
+    .hero-cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:34px; }
+    .cta { font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace; font-size:12px; letter-spacing:.02em; color:#f2f2f0; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.16); border-radius:5px; padding:11px 18px; cursor:pointer; transition:border-color .18s,background .18s,color .18s; }
+    .cta:hover { border-color:var(--ac); color:var(--ac); }
+    .cta .kbd { color:var(--ac); font-weight:600; }
+    .cta.primary { background:var(--ac); border-color:var(--ac); color:#0a0a0a; font-weight:600; }
+    .cta.primary:hover { background:transparent; color:var(--ac); }
+
+    .topnav .navbtn.kk { border:1px solid rgba(255,255,255,.16); border-radius:4px; padding:5px 9px; color:#a5a5a0; }
+    .topnav .navbtn.kk:hover { border-color:var(--ac); color:var(--ac); }
+
+    .kkfab { position:fixed; right:22px; bottom:22px; z-index:60; display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace; font-size:12px; color:#d9d9d6; background:rgba(12,12,12,.92); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:10px 14px; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.5); transition:border-color .18s,color .18s,transform .18s; }
+    .kkfab:hover { border-color:var(--ac); color:var(--ac); transform:translateY(-1px); }
+    .kkfab .kbd { color:var(--ac); font-weight:600; }
+    .kkfab[hidden] { display:none; }
+
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 820px) {
       .wrap { padding:0 24px; }
@@ -201,6 +235,19 @@
       .email-btn { font-size:30px; word-break:break-all; }
       .shot.cc, .shot.br, .shot.ada { height:220px; }
       .shot.docent { height:auto; }
+      .hero-cta { margin-top:26px; }
+      .kkfab { right:14px; bottom:14px; padding:9px 12px; font-size:11px; }
+    }
+
+    /* ---------- REDUCED MOTION ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      .caret, .tcaret, .tcaret.blinking, .hterm-bar .k { animation: none !important; opacity: 1 !important; }
     }
   </style>
 </head>
@@ -217,6 +264,7 @@
       <button class="navbtn" data-goto="experience">EXPERIENCE</button>
       <button class="navbtn" data-goto="work">WORK</button>
       <button class="navbtn" data-goto="contact">CONTACT</button>
+      <button class="navbtn kk" id="topTermBtn" title="Open terminal">⌘K</button>
       <span class="clock">IRVINE · <span id="clock"></span></span>
       <span class="avail">AVAILABLE 2026 <span class="dot">●</span></span>
     </div>
@@ -237,6 +285,11 @@
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.63 0H2.37A2.35 2.35 0 0 0 0 2.32v11.36A2.35 2.35 0 0 0 2.37 16h11.26A2.35 2.35 0 0 0 16 13.68V2.32A2.35 2.35 0 0 0 13.63 0ZM4.94 13.11H2.98V6.4h1.96v6.71ZM3.96 5.5a1.14 1.14 0 1 1 0-2.28 1.14 1.14 0 0 1 0 2.28Zm9.15 7.61h-1.96V9.85c0-.73-.01-1.67-1.02-1.67-1.02 0-1.18.8-1.18 1.62v3.31H6.99V6.4h1.88v.92h.03c.26-.5.9-1.02 1.85-1.02 1.98 0 2.35 1.3 2.35 3v3.81Z"/></svg>linkedin
         </a>
       </div>
+    </div>
+
+    <div class="hero-cta">
+      <button class="cta primary" data-goto="work">View the work →</button>
+      <button class="cta" id="heroOpenTerm"><span class="kbd">⌘K</span>&nbsp;&nbsp;Open the terminal</button>
     </div>
 
     <!-- Hero terminal -->
@@ -385,7 +438,6 @@
         <span class="num">02</span>
         <span class="name">Ada</span>
         <span class="tag">personal agent OS — plan · act · observe</span>
-        <a class="ext" href="https://github.com/sean-kim05/ada" target="_blank" rel="noopener" data-stop>↗</a>
         <span class="mark" id="ada-mark">+</span>
       </div>
       <div class="work-panel" id="ada-panel" hidden>
@@ -506,6 +558,11 @@
 
 </div>
 
+<!-- Floating terminal launcher -->
+<button class="kkfab" id="kkFab" title="Open terminal (⌘K)">
+  <span class="kbd">⌘K</span> terminal
+</button>
+
 <!-- ============ OVERLAY TERMINAL ============ -->
 <div id="termOverlay" hidden>
   <div class="term-head">
@@ -522,6 +579,7 @@
 <script>
 (function () {
   "use strict";
+  var REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var THEMES = ['#e33b26', '#e8a33d', '#7aa2f7', '#26cc41'];
   var acIdx = -1;
   function ac() { return acIdx >= 0 ? THEMES[acIdx] : '#e33b26'; }
@@ -547,7 +605,7 @@
   /* ---------- SMOOTH NAV ---------- */
   function goto(id) {
     var el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop - 36, behavior: 'smooth' });
+    if (el) window.scrollTo({ top: el.offsetTop - 36, behavior: REDUCE ? 'auto' : 'smooth' });
   }
   document.querySelectorAll('[data-goto]').forEach(function (b) {
     b.addEventListener('click', function () { goto(b.getAttribute('data-goto')); });
@@ -606,8 +664,16 @@
       di++; dc = 0;
     }
   }
-  renderDemo(0, 0, false);
-  demoTimer = setInterval(tickDemo, 55);
+  if (REDUCE) {
+    renderDemo(SESSION.length - 1, 0, true);
+    document.querySelectorAll('animateMotion').forEach(function (am) {
+      var c = am.parentNode;
+      if (c && c.parentNode) c.parentNode.removeChild(c);
+    });
+  } else {
+    renderDemo(0, 0, false);
+    demoTimer = setInterval(tickDemo, 55);
+  }
 
   /* ---------- WORK ROW EXPAND ---------- */
   function setRow(key, open) {
@@ -662,6 +728,7 @@
   var overlay = document.getElementById('termOverlay');
   var termBody = document.getElementById('termBody');
   var termInput = document.getElementById('termInput');
+  var fab = document.getElementById('kkFab');
   var termHist = null;
 
   function welcome() {
@@ -683,16 +750,20 @@
   }
   function openTerm() {
     overlay.hidden = false;
+    if (fab) fab.hidden = true;
     if (!termHist) termHist = welcome();
     renderTerm();
     setTimeout(function () { termInput.focus(); }, 60);
   }
-  function closeTerm() { overlay.hidden = true; }
+  function closeTerm() { overlay.hidden = true; if (fab) fab.hidden = false; }
   function toggleTerm() { overlay.hidden ? openTerm() : closeTerm(); }
 
   document.getElementById('termClose').addEventListener('click', closeTerm);
   document.getElementById('heroTermBtn').addEventListener('click', openTerm);
   document.getElementById('kkHint').addEventListener('click', toggleTerm);
+  document.getElementById('topTermBtn').addEventListener('click', openTerm);
+  document.getElementById('heroOpenTerm').addEventListener('click', openTerm);
+  if (fab) fab.addEventListener('click', openTerm);
   document.getElementById('termInputRow').addEventListener('click', function () { termInput.focus(); });
 
   function cycleTheme() {
