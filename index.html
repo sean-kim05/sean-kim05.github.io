@@ -84,9 +84,10 @@
     .hero-cursor { display: inline-block; width: 5px; height: 64px; background: #f2f2f0; margin-left: 14px; animation: blink 1.2s steps(1) infinite; vertical-align: -4px; }
     .hero-sub { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 42px; gap: 24px; flex-wrap: wrap; }
     .hero-p { margin: 0; font-size: 15px; line-height: 1.7; color: #a5a5a0; max-width: 46ch; text-wrap: pretty; }
-    .hero-links { display: flex; gap: 22px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; }
-    .hlink-resume { color: #f2f2f0; border-bottom: 1px solid rgba(255,255,255,.3); padding-bottom: 2px; transition: color .18s, border-color .18s; }
-    .hlink-resume:hover { border-color: var(--ac); color: var(--ac); }
+    .hero-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; }
+    .resume-btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 600; letter-spacing: .01em; color: #0a0a0a; background: var(--ac); border: 1px solid var(--ac); border-radius: 6px; padding: 10px 17px; box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: background .18s, color .18s; }
+    .resume-btn:hover { background: transparent; color: var(--ac); }
+    .resume-btn svg { display: block; }
     .hlink { display: inline-flex; align-items: center; gap: 6px; color: #7d7d78; transition: color .18s; }
     .hlink:hover { color: #f2f2f0; }
 
@@ -135,10 +136,6 @@
     .panel-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.9; color: #a5a5a0; }
     .diagram-wrap { border: 1px solid rgba(255,255,255,.1); border-radius: 4px; padding: 18px; background: #0f0f0f; }
     .fig-cap { margin-top: 10px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 11px; color: #4c4c48; }
-    .work-reserved { display: flex; align-items: baseline; gap: 28px; padding: 30px 8px; border-top: 1px solid rgba(255,255,255,.1); margin: 0 -8px; }
-    .work-reserved .work-num { color: #2e2e2b; }
-    .work-reserved .work-name { color: #2e2e2b; }
-    .work-reserved .work-desc { color: #4c4c48; }
     .work-end { border-top: 1px solid rgba(255,255,255,.1); }
 
     /* ---------- CAPABILITIES ---------- */
@@ -233,7 +230,7 @@
       <div class="hero-sub">
         <p class="hero-p">UC Irvine CS '27. Real-time infrastructure, production web apps, AI in the product. Twice an intern; currently building — open to 2026 internships and 2027 new-grad roles.</p>
         <div class="hero-links">
-          <a class="hlink-resume" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">résumé ↓</a>
+          <a class="resume-btn" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.5v8.5"/><path d="M4.5 6.5 8 10l3.5-3.5"/><path d="M2.5 13.5h11"/></svg>Download résumé</a>
           <a class="hlink" href="https://github.com/sean-kim05" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>github</a>
           <a class="hlink" href="https://linkedin.com/in/seankim08" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.63 0H2.37A2.35 2.35 0 0 0 0 2.32v11.36A2.35 2.35 0 0 0 2.37 16h11.26A2.35 2.35 0 0 0 16 13.68V2.32A2.35 2.35 0 0 0 13.63 0ZM4.94 13.11H2.98V6.4h1.96v6.71ZM3.96 5.5a1.14 1.14 0 1 1 0-2.28 1.14 1.14 0 0 1 0 2.28Zm9.15 7.61h-1.96V9.85c0-.73-.01-1.67-1.02-1.67-1.02 0-1.18.8-1.18 1.62v3.31H6.99V6.4h1.88v.92h.03c.26-.5.9-1.02 1.85-1.02 1.98 0 2.35 1.3 2.35 3v3.81Z"></path></svg>linkedin</a>
         </div>
@@ -310,7 +307,7 @@
           <span class="work-num">01</span>
           <span class="work-name">CollabCode</span>
           <span class="work-desc">real-time collaborative editor — 17ms p95 · 50 clients</span>
-          <a class="work-arrow link-stop" href="https://github.com/sean-kim05" target="_blank" rel="noopener">↗</a>
+          <a class="work-arrow link-stop" href="https://collaborative-code-editor-livid.vercel.app" target="_blank" rel="noopener" title="live demo">↗</a>
           <span class="work-mark" id="ccMark">–</span>
         </div>
         <div class="work-panel" id="ccPanel">
@@ -380,9 +377,65 @@
           </div>
         </div>
 
+        <!-- Ada -->
+        <div class="work-row" id="adaRow" role="button" tabindex="0" aria-expanded="false" aria-controls="adaPanel">
+          <span class="work-num">02</span>
+          <span class="work-name">Ada</span>
+          <span class="work-desc">personal agent OS — plan · act · observe</span>
+          <span class="work-arrow" style="visibility:hidden" aria-hidden="true">↗</span>
+          <span class="work-mark" id="adaMark">+</span>
+        </div>
+        <div class="work-panel" id="adaPanel" hidden>
+          <div class="panel-grid">
+            <div class="panel-col">
+              <span class="panel-k">ABOUT</span>
+              <span class="panel-about">Give Ada a goal and watch it work. A live trace panel streams every step — plan → tool call → observe → final — as the supervisor drives the agent loop. A model router sends cheap subtasks to a local Qwen-14B and hard reasoning to Claude.</span>
+            </div>
+            <div class="panel-col">
+              <span class="panel-k">STACK</span>
+              <span class="panel-mono">fastapi / pydantic-ai<br>react · vite / typescript<br>postgres · redis · qdrant</span>
+            </div>
+            <div class="panel-col">
+              <span class="panel-k">SHAPE</span>
+              <span class="panel-mono">claude + local qwen-14b<br>event-sourced trace<br>websocket streaming</span>
+            </div>
+          </div>
+          <div style="padding:4px 0 36px">
+            <img class="shot" src="assets/ada.png" alt="Ada — personal agent cockpit with live agent trace" loading="lazy" style="height:340px"/>
+          </div>
+        </div>
+
+        <!-- Docent -->
+        <div class="work-row" id="docentRow" role="button" tabindex="0" aria-expanded="false" aria-controls="docentPanel">
+          <span class="work-num">03</span>
+          <span class="work-name">Docent</span>
+          <span class="work-desc">agentic research assistant — cited, multi-source</span>
+          <a class="work-arrow link-stop" href="https://agentic-research-assistant-nine.vercel.app" target="_blank" rel="noopener" title="live demo">↗</a>
+          <span class="work-mark" id="docentMark">+</span>
+        </div>
+        <div class="work-panel" id="docentPanel" hidden>
+          <div class="panel-grid">
+            <div class="panel-col">
+              <span class="panel-k">ABOUT</span>
+              <span class="panel-about">Ask a complex question; Docent decomposes it into sub-questions, routes each to your documents or the live web, retrieves and reranks, then streams one grounded answer with inline citations. Hand-rolled RAG — no LangChain or LlamaIndex.</span>
+            </div>
+            <div class="panel-col">
+              <span class="panel-k">STACK</span>
+              <span class="panel-mono">next.js / typescript<br>fastapi / python<br>pinecone · voyage · tavily</span>
+            </div>
+            <div class="panel-col">
+              <span class="panel-k">SHAPE</span>
+              <span class="panel-mono">plan → retrieve → synthesize<br>docs + web per sub-q<br>sse token streaming</span>
+            </div>
+          </div>
+          <div style="padding:4px 0 36px">
+            <img class="shot" src="assets/docent.png" alt="Docent — a question decomposed into three web-routed sub-questions with a cited answer" loading="lazy" style="object-fit:contain"/>
+          </div>
+        </div>
+
         <!-- Briefly -->
         <div class="work-row" id="brRow" role="button" tabindex="0" aria-expanded="false" aria-controls="brPanel">
-          <span class="work-num">02</span>
+          <span class="work-num">04</span>
           <span class="work-name">Briefly</span>
           <span class="work-desc">AI standups at the edge — workers + llama 3.3</span>
           <a class="work-arrow link-stop" href="https://github.com/sean-kim05" target="_blank" rel="noopener">↗</a>
@@ -408,12 +461,6 @@
           </div>
         </div>
 
-        <!-- Reserved -->
-        <div class="work-reserved">
-          <span class="work-num">03</span>
-          <span class="work-name">Reserved</span>
-          <span class="work-desc">summer '26 — in progress</span>
-        </div>
         <div class="work-end"></div>
 
       </div>
@@ -554,7 +601,7 @@
       { k: 'out', t: 'sean kim — full-stack engineer · ai in the product' },
       { k: 'out', t: 'cs @ uc irvine · class of 2027 · rising senior' },
       { k: 'cmd', t: 'ls projects/' },
-      { k: 'dirs', t: 'collabcode/   briefly/   reserved/' },
+      { k: 'dirs', t: 'collabcode/   ada/   docent/   briefly/' },
       { k: 'cmd', t: 'open collabcode --stats' },
       { k: 'stat', t: '17ms p95 sync · 50 clients/room · 4 claude modes' }
     ];
@@ -604,6 +651,8 @@
     var expanded = 'collabcode';
     var rows = {
       collabcode: { row: $('ccRow'), panel: $('ccPanel'), mark: $('ccMark') },
+      ada: { row: $('adaRow'), panel: $('adaPanel'), mark: $('adaMark') },
+      docent: { row: $('docentRow'), panel: $('docentPanel'), mark: $('docentMark') },
       briefly: { row: $('brRow'), panel: $('brPanel'), mark: $('brMark') }
     };
     function applyExpanded() {
@@ -714,8 +763,9 @@
       else if (cmd === 'projects') {
         push([
           '01  collabcode   real-time collaborative editor — 17ms p95, 50 clients/room',
-          '02  briefly      AI standups at the edge — workers + llama 3.3',
-          '03  reserved     summer \'26 — in progress'
+          '02  ada          personal agent OS — plan · act · observe',
+          '03  docent       agentic research assistant — cited, multi-source',
+          '04  briefly      AI standups at the edge — workers + llama 3.3'
         ]);
       }
       else if (cmd === 'skills') {
