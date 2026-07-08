@@ -554,17 +554,23 @@
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    // self-animating grid: two crossing waves ripple brightness/size across the dots
+    // self-animating grid: each dot orbits a little, with the phase shifting
+    // across space so the whole field undulates as a slow travelling wave.
+    var AMP = 5;
     function frameGrid(T) {
       if (!ctx) return;
       ctx.clearRect(0, 0, bw, bh);
-      for (var x = GAP / 2; x < bw; x += GAP) {
-        for (var y = GAP / 2; y < bh; y += GAP) {
+      // extend the bounds by one cell so edge dots stay covered as they sway
+      for (var x = GAP / 2 - GAP; x < bw + GAP; x += GAP) {
+        for (var y = GAP / 2 - GAP; y < bh + GAP; y += GAP) {
+          var ph = x * 0.011 + y * 0.013;
+          var ox = Math.sin(ph + T * 0.5) * AMP;   // small circular orbit,
+          var oy = Math.cos(ph - T * 0.42) * AMP;  // phase varies across the grid
           var w = Math.sin(x * 0.010 + T * 0.55) * Math.sin(y * 0.011 - T * 0.42);
-          var f = (w + 1) * 0.5; // 0..1
+          var f = (w + 1) * 0.5; // 0..1 brightness/size ripple
           ctx.beginPath();
           ctx.fillStyle = 'rgba(255,255,255,' + (0.035 + f * 0.09).toFixed(3) + ')';
-          ctx.arc(x, y, R0 + f * 0.7, 0, 6.2832);
+          ctx.arc(x + ox, y + oy, R0 + f * 0.7, 0, 6.2832);
           ctx.fill();
         }
       }
