@@ -33,14 +33,14 @@
   }
   </script>
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cpath d='M8 9 L15 16 L8 23' fill='none' stroke='%2300e5ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='16.5' y='21' width='8' height='3' rx='1.2' fill='%23f2f2f0'/%3E%3C/svg%3E"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Cpath d='M8 9 L15 16 L8 23' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='16.5' y='21' width='8' height='3' rx='1.2' fill='%23f2f2f0'/%3E%3C/svg%3E"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 
   <style>
-    :root { --ac: #00e5ff; }
+    :root { --ac: #ffffff; }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -519,8 +519,8 @@
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
     // ---------- ACCENT ----------
-    var THEMES = ['#00e5ff', '#00e676', '#3b9eff', '#8b5cff'];
-    var acHex = '#00e5ff', acIdx = -1;
+    var THEMES = ['#ffffff', '#ffb454', '#ff6b5b', '#63e6a8'];
+    var acHex = '#ffffff', acIdx = -1;
     function setAc(hex) { acHex = hex; docEl.style.setProperty('--ac', hex); }
     function acRGBA(al) {
       var h = acHex.replace('#', '');
@@ -560,7 +560,7 @@
       ctx.clearRect(0, 0, bw, bh);
       var reach2 = REACH * REACH, x, y;
       // faint base grid drawn as a single path
-      ctx.fillStyle = 'rgba(214,224,244,0.05)';
+      ctx.fillStyle = 'rgba(255,255,255,0.05)';
       ctx.beginPath();
       for (x = GAP / 2; x < bw; x += GAP) {
         for (y = GAP / 2; y < bh; y += GAP) {
