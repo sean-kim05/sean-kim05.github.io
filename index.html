@@ -58,10 +58,9 @@
     @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 
-    /* ---------- BACKGROUND ---------- */
-    .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; --mx: 50%; --my: 30%; }
+    /* ---------- BACKGROUND (dot field) ---------- */
+    .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     .bg canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
-    .bg-glow { position: absolute; inset: 0; background: radial-gradient(600px circle at var(--mx) var(--my), rgba(226,236,255,.05), transparent 46%); }
 
     /* ---------- LAYOUT ---------- */
     .content { position: relative; z-index: 1; }
@@ -205,7 +204,6 @@
   <!-- ============ BACKGROUND ============ -->
   <div class="bg" id="bg" aria-hidden="true">
     <canvas id="bgCanvas"></canvas>
-    <div class="bg-glow" id="bgGlow"></div>
   </div>
 
   <div class="content">
@@ -545,9 +543,10 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (aurora + glow) ----------
-    var bgEl = $('bg'), cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
+    // ---------- BACKGROUND (dot field) ----------
+    var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
     var bw = 0, bh = 0, rafId = null, mouse = { x: -9999, y: -9999 }, lastMove = 0;
+    var GAP = 34, R0 = 1.1, REACH = 175;
     window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; lastMove = Date.now(); }, { passive: true });
     function resizeBg() {
       if (!cv || !ctx) return;
@@ -556,34 +555,46 @@
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    function frameAurora(T) {
+    function frameDots(mx, my) {
+      if (!ctx) return;
       ctx.clearRect(0, 0, bw, bh);
-      ctx.globalCompositeOperation = 'lighter';
-      for (var k = 0; k < 4; k++) {
-        var baseY = bh * (0.24 + 0.16 * k), amp = 28 + k * 12, accent = (k === 1);
-        ctx.beginPath(); ctx.moveTo(0, bh);
-        for (var x = 0; x <= bw; x += 10) {
-          var y = baseY + Math.sin(x * 0.005 + T * (0.4 + 0.1 * k) + k) * amp + Math.sin(x * 0.013 - T * 0.3) * 12;
-          ctx.lineTo(x, y);
+      var reach2 = REACH * REACH, x, y;
+      // faint base grid drawn as a single path
+      ctx.fillStyle = 'rgba(214,224,244,0.05)';
+      ctx.beginPath();
+      for (x = GAP / 2; x < bw; x += GAP) {
+        for (y = GAP / 2; y < bh; y += GAP) {
+          var dx = x - mx, dy = y - my;
+          if (dx * dx + dy * dy < reach2) continue;
+          ctx.moveTo(x + R0, y);
+          ctx.arc(x, y, R0, 0, 6.2832);
         }
-        ctx.lineTo(bw, bh); ctx.closePath();
-        var g = ctx.createLinearGradient(0, baseY - 80, 0, baseY + 140);
-        if (accent) { g.addColorStop(0, acRGBA(0.15)); g.addColorStop(1, 'rgba(0,0,0,0)'); }
-        else { g.addColorStop(0, 'rgba(220,230,255,0.08)'); g.addColorStop(1, 'rgba(0,0,0,0)'); }
-        ctx.fillStyle = g; ctx.fill();
       }
-      ctx.globalCompositeOperation = 'source-over';
+      ctx.fill();
+      // accent spotlight of brighter, larger dots near the cursor
+      var x0 = mx - REACH, x1 = mx + REACH, y0 = my - REACH, y1 = my + REACH;
+      for (x = GAP / 2; x < bw; x += GAP) {
+        if (x < x0 || x > x1) continue;
+        for (y = GAP / 2; y < bh; y += GAP) {
+          if (y < y0 || y > y1) continue;
+          var ddx = x - mx, ddy = y - my, dist = Math.sqrt(ddx * ddx + ddy * ddy);
+          if (dist >= REACH) continue;
+          var f = 1 - dist / REACH;
+          ctx.beginPath();
+          ctx.fillStyle = acRGBA(0.12 + f * 0.6);
+          ctx.arc(x, y, R0 + f * 1.9, 0, 6.2832);
+          ctx.fill();
+        }
+      }
     }
     function frameBg() {
-      if (!ctx) return;
       var now = Date.now(), mx = mouse.x, my = mouse.y;
       if (now - lastMove > 2200) {
         var t = now / 3800;
         mx = (0.5 + 0.32 * Math.sin(t)) * bw;
         my = (0.40 + 0.24 * Math.cos(t * 0.82)) * bh;
       }
-      if (bgEl) { bgEl.style.setProperty('--mx', mx + 'px'); bgEl.style.setProperty('--my', my + 'px'); }
-      frameAurora(now / 1000);
+      frameDots(mx, my);
     }
     if (ctx) {
       resizeBg();
