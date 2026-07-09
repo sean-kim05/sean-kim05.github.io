@@ -543,38 +543,54 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (static blueprint grid) ----------
-    // Deliberately motionless: faint graph-paper lines with slightly brighter
-    // nodes at the intersections, then a radial vignette so the grid glows a
-    // touch behind the hero and dissolves toward the edges. Drawn once (and on
-    // resize) — no animation loop, so it never competes with the content.
+    // ---------- BACKGROUND (constellation) ----------
+    // Nodes drift very slowly; thin lines link the near ones and fade with
+    // distance, so a faint network slowly forms and breaks. A radial vignette
+    // concentrates it behind the hero and fades the edges so it stays calm.
     var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
-    var bw = 0, bh = 0, GAP = 36, R0 = 1;
-    function drawGrid() {
+    var bw = 0, bh = 0, rafId = null;
+    var LINK = 130, LINK2 = LINK * LINK, SPD = 0.12, R0 = 1.2, nodes = [];
+    function rnd() { return Math.random(); }
+    function initNodes() {
+      var n = Math.round(Math.min(90, Math.max(42, (bw * bh) / 22000)));
+      nodes = [];
+      for (var i = 0; i < n; i++) {
+        nodes.push({ x: rnd() * bw, y: rnd() * bh, vx: (rnd() * 2 - 1) * SPD, vy: (rnd() * 2 - 1) * SPD });
+      }
+    }
+    function stepNodes() {
+      for (var i = 0; i < nodes.length; i++) {
+        var p = nodes[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > bw) { p.vx = -p.vx; p.x = Math.max(0, Math.min(bw, p.x)); }
+        if (p.y < 0 || p.y > bh) { p.vy = -p.vy; p.y = Math.max(0, Math.min(bh, p.y)); }
+      }
+    }
+    function drawConst() {
       if (!ctx) return;
       ctx.clearRect(0, 0, bw, bh);
-      // graph-paper lines
-      ctx.strokeStyle = 'rgba(255,255,255,0.028)';
+      // links
       ctx.lineWidth = 1;
-      ctx.beginPath();
-      for (var x = GAP / 2; x < bw; x += GAP) { var px = Math.round(x) + 0.5; ctx.moveTo(px, 0); ctx.lineTo(px, bh); }
-      for (var y = GAP / 2; y < bh; y += GAP) { var py = Math.round(y) + 0.5; ctx.moveTo(0, py); ctx.lineTo(bw, py); }
-      ctx.stroke();
-      // brighter nodes at the intersections
-      ctx.fillStyle = 'rgba(255,255,255,0.11)';
-      ctx.beginPath();
-      for (var gx = GAP / 2; gx < bw; gx += GAP) {
-        for (var gy = GAP / 2; gy < bh; gy += GAP) {
-          ctx.moveTo(gx + R0, gy);
-          ctx.arc(gx, gy, R0, 0, 6.2832);
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        for (var j = i + 1; j < nodes.length; j++) {
+          var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+          if (d2 > LINK2) continue;
+          var t = 1 - Math.sqrt(d2) / LINK;
+          ctx.strokeStyle = 'rgba(255,255,255,' + (t * 0.14).toFixed(3) + ')';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         }
       }
-      ctx.fill();
-      // radial vignette: keep it centred behind the hero, fade toward the edges
+      // nodes
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      for (var k = 0; k < nodes.length; k++) {
+        ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, R0, 0, 6.2832); ctx.fill();
+      }
+      // vignette: concentrate behind the hero, dissolve toward the edges
       ctx.globalCompositeOperation = 'destination-in';
-      var g = ctx.createRadialGradient(bw * 0.5, bh * 0.4, 0, bw * 0.5, bh * 0.4, Math.max(bw, bh) * 0.8);
+      var g = ctx.createRadialGradient(bw * 0.5, bh * 0.42, 0, bw * 0.5, bh * 0.42, Math.max(bw, bh) * 0.82);
       g.addColorStop(0, 'rgba(0,0,0,1)');
-      g.addColorStop(0.62, 'rgba(0,0,0,0.55)');
+      g.addColorStop(0.62, 'rgba(0,0,0,0.6)');
       g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, bw, bh);
@@ -586,11 +602,16 @@
       bw = window.innerWidth; bh = window.innerHeight;
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      drawGrid();
+      initNodes();
+      if (reduce) drawConst();
     }
     if (ctx) {
       resizeBg();
       window.addEventListener('resize', resizeBg);
+      if (!reduce) {
+        var loop = function () { stepNodes(); drawConst(); rafId = requestAnimationFrame(loop); };
+        rafId = requestAnimationFrame(loop);
+      }
     }
 
     // ---------- HERO AUTO-TYPE DEMO ----------
