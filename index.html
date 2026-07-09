@@ -87,8 +87,9 @@
     .resume-btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 600; letter-spacing: .01em; color: #0a0a0a; background: var(--ac); border: 1px solid var(--ac); border-radius: 6px; padding: 10px 17px; box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: background .18s, color .18s; }
     .resume-btn:hover { background: transparent; color: var(--ac); }
     .resume-btn svg { display: block; }
-    .hlink { display: inline-flex; align-items: center; gap: 6px; color: #7d7d78; transition: color .18s; }
-    .hlink:hover { color: #f2f2f0; }
+    .hlink { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: #c9c9c4; border: 1px solid rgba(255,255,255,.16); border-radius: 6px; padding: 9px 14px; transition: color .18s, border-color .18s, background .18s; }
+    .hlink:hover { color: #f2f2f0; border-color: rgba(255,255,255,.42); background: rgba(255,255,255,.04); }
+    .hlink svg { width: 15px; height: 15px; }
 
     /* ---------- HERO TERMINAL ---------- */
     .hero-term { margin-top: 48px; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; background: #000; overflow: hidden; max-width: 620px; box-shadow: 0 20px 50px rgba(0,0,0,.6); }
@@ -123,11 +124,11 @@
     .work-num { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #4c4c48; width: 36px; flex: none; }
     .work-name { font-size: 42px; font-weight: 600; letter-spacing: -0.03em; }
     .work-desc { margin-left: auto; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; color: #7d7d78; text-align: right; }
-    .work-arrow { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #7d7d78; flex: none; transition: color .18s; }
+    .work-arrow { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 18px; line-height: 1; color: #b0b0ab; flex: none; transition: color .18s; }
     .work-arrow:hover { color: var(--ac); }
     .work-mark { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 16px; color: #7d7d78; flex: none; width: 14px; text-align: center; }
     .work-panel { border-top: 1px solid rgba(255,255,255,.06); animation: fadeUp .25s ease-out; }
-    .shot { width: 100%; display: block; object-fit: cover; border: 1px solid rgba(255,255,255,.1); border-radius: 6px; }
+    .shot { width: 100%; height: auto; display: block; border: 1px solid rgba(255,255,255,.1); border-radius: 6px; }
     .panel-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 32px; padding: 24px 0 28px; }
     .panel-col { display: flex; flex-direction: column; gap: 8px; }
     .panel-k { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 10.5px; letter-spacing: .16em; color: #7d7d78; }
@@ -310,7 +311,7 @@
         </div>
         <div class="work-panel" id="ccPanel">
           <div style="padding:28px 0 0">
-            <img class="shot" src="assets/collabcode.png" alt="CollabCode editor with live cursors" loading="lazy" style="height:340px"/>
+            <img class="shot" src="assets/collabcode.png" alt="CollabCode editor with live cursors" loading="lazy"/>
           </div>
           <div class="panel-grid">
             <div class="panel-col">
@@ -399,7 +400,7 @@
             </div>
           </div>
           <div style="padding:4px 0 36px">
-            <img class="shot" src="assets/ada.png" alt="Ada — personal agent cockpit with live agent trace" loading="lazy" style="height:340px"/>
+            <img class="shot" src="assets/ada.png" alt="Ada — personal agent cockpit with live agent trace" loading="lazy"/>
           </div>
         </div>
 
@@ -427,7 +428,7 @@
             </div>
           </div>
           <div style="padding:4px 0 36px">
-            <img class="shot" src="assets/docent.png" alt="Docent — a question decomposed into three web-routed sub-questions with a cited answer" loading="lazy" style="object-fit:contain"/>
+            <img class="shot" src="assets/docent.png" alt="Docent — a question decomposed into three web-routed sub-questions with a cited answer" loading="lazy"/>
           </div>
         </div>
 
@@ -455,7 +456,7 @@
             </div>
           </div>
           <div style="padding:4px 0 36px">
-            <img class="shot" src="assets/briefly.png" alt="Briefly standup / summary view" loading="lazy" style="height:300px"/>
+            <img class="shot" src="assets/briefly.png" alt="Briefly standup / summary view" loading="lazy"/>
           </div>
         </div>
 
@@ -543,60 +544,172 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (perspective grid) ----------
-    // A receding "terminal floor": vertical lines fan from a vanishing point on
-    // the horizon and horizontal lines bunch toward it, scrolling very slowly
-    // toward the viewer. A linear mask fades the grid into the horizon and
-    // softens the bottom so it reads as depth without shouting.
+    // ---------- BACKGROUND (switchable) ----------
+    // Pick a mode with ?bg=<name> in the URL, or the `bg <name>` terminal
+    // command. Modes: constellation · perspective · starfield · topographic ·
+    // globe · halftone. All monochrome-white, all honour reduced-motion.
     var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
-    var bw = 0, bh = 0, rafId = null, scroll = 0;
-    var ROWS = 18, COLS = 20, SCROLL_SPD = 0.008, HOR = 0.42;
-    function drawPersp() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, bw, bh);
-      var cx = bw * 0.5, hy = bh * HOR, floorH = bh - hy;
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255,255,255,0.085)';
-      // vertical lines fanning out from the vanishing point
-      ctx.beginPath();
-      for (var j = -COLS; j <= COLS; j++) {
-        var bx = cx + (j / COLS) * (bw * 0.62);
-        ctx.moveTo(cx, hy); ctx.lineTo(bx, bh);
-      }
-      // horizontal lines, bunched near the horizon and scrolling toward viewer
-      var f = scroll - Math.floor(scroll);
-      for (var i = 0; i <= ROWS; i++) {
-        var frac = (i + f) / ROWS;      // 0..1 from horizon to foreground
-        var yy = hy + floorH * frac * frac;
-        ctx.moveTo(0, yy); ctx.lineTo(bw, yy);
-      }
-      ctx.stroke();
-      // fade into the horizon (top) and soften the very bottom
-      ctx.globalCompositeOperation = 'destination-in';
-      var g = ctx.createLinearGradient(0, hy, 0, bh);
-      g.addColorStop(0, 'rgba(0,0,0,0)');
-      g.addColorStop(0.20, 'rgba(0,0,0,0.9)');
-      g.addColorStop(0.82, 'rgba(0,0,0,0.9)');
-      g.addColorStop(1, 'rgba(0,0,0,0.12)');
-      ctx.fillStyle = g;
-      ctx.fillRect(0, hy - 1, bw, floorH + 2);
-      ctx.globalCompositeOperation = 'source-over';
-    }
-    function resizeBg() {
+    var bw = 0, bh = 0, rafId = null, t0 = Date.now();
+    function rndB() { return Math.random(); }
+    function resizeCanvas() {
       if (!cv || !ctx) return;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       bw = window.innerWidth; bh = window.innerHeight;
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (reduce) drawPersp();
     }
-    if (ctx) {
-      resizeBg();
-      window.addEventListener('resize', resizeBg);
-      if (!reduce) {
-        var loop = function () { scroll += SCROLL_SPD; drawPersp(); rafId = requestAnimationFrame(loop); };
+    function radialMask(fx, fy, spread, mid) {
+      ctx.globalCompositeOperation = 'destination-in';
+      var g = ctx.createRadialGradient(bw * fx, bh * fy, 0, bw * fx, bh * fy, Math.max(bw, bh) * spread);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(0.62, 'rgba(0,0,0,' + mid + ')'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, bw, bh);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    var cNodes = [], stars = [], gPts = [];
+    var MODES = {
+      constellation: {
+        init: function () {
+          var n = Math.round(Math.min(90, Math.max(42, (bw * bh) / 22000))); cNodes = [];
+          for (var i = 0; i < n; i++) cNodes.push({ x: rndB() * bw, y: rndB() * bh, vx: (rndB() * 2 - 1) * 0.12, vy: (rndB() * 2 - 1) * 0.12 });
+        },
+        frame: function () {
+          ctx.clearRect(0, 0, bw, bh);
+          var i, j, LINK = 130, LINK2 = LINK * LINK, a, p, q, dx, dy, d2;
+          for (i = 0; i < cNodes.length; i++) {
+            a = cNodes[i]; a.x += a.vx; a.y += a.vy;
+            if (a.x < 0 || a.x > bw) { a.vx = -a.vx; a.x = Math.max(0, Math.min(bw, a.x)); }
+            if (a.y < 0 || a.y > bh) { a.vy = -a.vy; a.y = Math.max(0, Math.min(bh, a.y)); }
+          }
+          ctx.lineWidth = 1;
+          for (i = 0; i < cNodes.length; i++) {
+            p = cNodes[i];
+            for (j = i + 1; j < cNodes.length; j++) {
+              q = cNodes[j]; dx = p.x - q.x; dy = p.y - q.y; d2 = dx * dx + dy * dy;
+              if (d2 > LINK2) continue;
+              ctx.strokeStyle = 'rgba(255,255,255,' + ((1 - Math.sqrt(d2) / LINK) * 0.14).toFixed(3) + ')';
+              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+            }
+          }
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
+          for (i = 0; i < cNodes.length; i++) { ctx.beginPath(); ctx.arc(cNodes[i].x, cNodes[i].y, 1.2, 0, 6.2832); ctx.fill(); }
+          radialMask(0.5, 0.42, 0.82, 0.6);
+        }
+      },
+      perspective: {
+        init: function () {},
+        frame: function (t) {
+          ctx.clearRect(0, 0, bw, bh);
+          var cx = bw * 0.5, hy = bh * 0.42, floorH = bh - hy, ROWS = 18, COLS = 20, i, j, bx;
+          ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,255,255,0.085)'; ctx.beginPath();
+          for (j = -COLS; j <= COLS; j++) { bx = cx + (j / COLS) * (bw * 0.62); ctx.moveTo(cx, hy); ctx.lineTo(bx, bh); }
+          var f = (t * 0.5) % 1;
+          for (i = 0; i <= ROWS; i++) { var fr = (i + f) / ROWS, yy = hy + floorH * fr * fr; ctx.moveTo(0, yy); ctx.lineTo(bw, yy); }
+          ctx.stroke();
+          ctx.globalCompositeOperation = 'destination-in';
+          var g = ctx.createLinearGradient(0, hy, 0, bh);
+          g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.2, 'rgba(0,0,0,0.9)'); g.addColorStop(0.82, 'rgba(0,0,0,0.9)'); g.addColorStop(1, 'rgba(0,0,0,0.12)');
+          ctx.fillStyle = g; ctx.fillRect(0, hy - 1, bw, floorH + 2);
+          ctx.globalCompositeOperation = 'source-over';
+        }
+      },
+      starfield: {
+        init: function () {
+          var n = Math.round(Math.min(170, Math.max(70, (bw * bh) / 9000))); stars = [];
+          for (var i = 0; i < n; i++) stars.push({ x: rndB() * bw, y: rndB() * bh, z: rndB() });
+        },
+        frame: function () {
+          ctx.clearRect(0, 0, bw, bh);
+          for (var i = 0; i < stars.length; i++) {
+            var s = stars[i];
+            s.y += 0.05 + s.z * 0.25; s.x -= 0.02 + s.z * 0.08;
+            if (s.y > bh) { s.y = 0; s.x = rndB() * bw; }
+            if (s.x < 0) s.x = bw;
+            ctx.fillStyle = 'rgba(255,255,255,' + (0.15 + s.z * 0.55).toFixed(3) + ')';
+            ctx.beginPath(); ctx.arc(s.x, s.y, 0.5 + s.z * 1.5, 0, 6.2832); ctx.fill();
+          }
+        }
+      },
+      topographic: {
+        init: function () {},
+        frame: function (t) {
+          ctx.clearRect(0, 0, bw, bh);
+          ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+          var lines = Math.round(bh / 46) + 2;
+          for (var k = 0; k < lines; k++) {
+            var baseY = k * 46 - 20; ctx.beginPath();
+            for (var x = 0; x <= bw; x += 8) {
+              var y = baseY + Math.sin(x * 0.006 + t * 0.25 + k * 0.5) * 14 + Math.sin(x * 0.013 - t * 0.18 + k * 0.3) * 8;
+              if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+          radialMask(0.5, 0.45, 0.92, 0.5);
+        }
+      },
+      globe: {
+        init: function () {
+          var n = 380, off = 2 / n, inc = Math.PI * (3 - Math.sqrt(5)); gPts = [];
+          for (var i = 0; i < n; i++) {
+            var y = i * off - 1 + off / 2, r = Math.sqrt(Math.max(0, 1 - y * y)), phi = i * inc;
+            gPts.push({ x: Math.cos(phi) * r, y: y, z: Math.sin(phi) * r });
+          }
+        },
+        frame: function (t) {
+          ctx.clearRect(0, 0, bw, bh);
+          var R = Math.min(bw, bh) * 0.32, cx = bw * 0.5, cy = bh * 0.44, ang = t * 0.18, ca = Math.cos(ang), sa = Math.sin(ang);
+          for (var i = 0; i < gPts.length; i++) {
+            var p = gPts[i], x = p.x * ca - p.z * sa, z = p.x * sa + p.z * ca, y = p.y;
+            var ty = y * 0.96 - z * 0.28, tz = y * 0.28 + z * 0.96, depth = (tz + 1) / 2;
+            ctx.fillStyle = 'rgba(255,255,255,' + (0.06 + depth * 0.5).toFixed(3) + ')';
+            ctx.beginPath(); ctx.arc(cx + x * R, cy + ty * R, 0.6 + depth * 1.4, 0, 6.2832); ctx.fill();
+          }
+        }
+      },
+      halftone: {
+        init: function () {},
+        frame: function (t) {
+          ctx.clearRect(0, 0, bw, bh);
+          var gap = 26, maxR = gap * 0.42;
+          var fx = bw * (0.5 + 0.35 * Math.sin(t * 0.15)), fy = bh * (0.42 + 0.25 * Math.cos(t * 0.12)), maxD = Math.max(bw, bh) * 0.7;
+          ctx.fillStyle = '#fff';
+          for (var x = gap / 2; x < bw; x += gap) {
+            for (var y = gap / 2; y < bh; y += gap) {
+              var dx = x - fx, dy = y - fy, f = 1 - Math.min(1, Math.sqrt(dx * dx + dy * dy) / maxD), r = maxR * f * f;
+              if (r < 0.25) continue;
+              ctx.globalAlpha = 0.12 + f * 0.5;
+              ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+            }
+          }
+          ctx.globalAlpha = 1;
+        }
+      }
+    };
+    var BG_LIST = ['constellation', 'perspective', 'starfield', 'topographic', 'globe', 'halftone'];
+    var activeBg = 'constellation';
+    function startBg(name) {
+      name = ('' + (name || '')).toLowerCase().trim();
+      if (name === 'contours') name = 'topographic';
+      if (name === 'stars') name = 'starfield';
+      if (!MODES[name]) name = 'constellation';
+      activeBg = name;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      resizeCanvas();
+      if (MODES[name].init) MODES[name].init();
+      t0 = Date.now();
+      if (reduce) { MODES[name].frame(0); }
+      else {
+        var loop = function () { MODES[name].frame((Date.now() - t0) / 1000); rafId = requestAnimationFrame(loop); };
         rafId = requestAnimationFrame(loop);
       }
+      return name;
+    }
+    if (ctx) {
+      window.addEventListener('resize', function () {
+        resizeCanvas();
+        if (MODES[activeBg] && MODES[activeBg].init) MODES[activeBg].init();
+        if (reduce && MODES[activeBg]) MODES[activeBg].frame(0);
+      });
+      startBg(new URLSearchParams(location.search).get('bg') || 'constellation');
     }
 
     // ---------- HERO AUTO-TYPE DEMO ----------
@@ -751,6 +864,7 @@
           '  contact     get in touch',
           '  github      open the profile',
           '  theme       cycle the accent color',
+          '  bg <name>   switch the backdrop',
           '  date        local time in irvine',
           '  ls          look around',
           '  clear       wipe the screen',
@@ -798,6 +912,14 @@
       else if (cmd === 'github') {
         push(['opening github.com/sean-kim05 ↗'], 'g');
         window.open('https://github.com/sean-kim05', '_blank');
+      }
+      else if (cmd === 'bg' || cmd.indexOf('bg ') === 0) {
+        var bgName = cmd.slice(2).trim();
+        if (!bgName) {
+          push(['backdrops: ' + BG_LIST.join(' · '), 'current: ' + activeBg + '  ·  usage: bg <name>']);
+        } else {
+          push(['backdrop → ' + startBg(bgName) + ' ✓'], 'g');
+        }
       }
       else if (cmd === 'ls') {
         push(['work/   experience/   capabilities/   resume.pdf   contact.txt']);
