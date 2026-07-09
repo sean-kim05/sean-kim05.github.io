@@ -543,24 +543,42 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (static dot grid) ----------
-    // Deliberately motionless: a faint, evenly-spaced dot grid that adds a
-    // little texture and then gets out of the way of the content. Drawn once
-    // (and again on resize) — no animation loop.
+    // ---------- BACKGROUND (static blueprint grid) ----------
+    // Deliberately motionless: faint graph-paper lines with slightly brighter
+    // nodes at the intersections, then a radial vignette so the grid glows a
+    // touch behind the hero and dissolves toward the edges. Drawn once (and on
+    // resize) — no animation loop, so it never competes with the content.
     var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
-    var bw = 0, bh = 0, GAP = 30, R0 = 1;
+    var bw = 0, bh = 0, GAP = 36, R0 = 1;
     function drawGrid() {
       if (!ctx) return;
       ctx.clearRect(0, 0, bw, bh);
-      ctx.fillStyle = 'rgba(255,255,255,0.05)';
+      // graph-paper lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.028)';
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      for (var x = GAP / 2; x < bw; x += GAP) {
-        for (var y = GAP / 2; y < bh; y += GAP) {
-          ctx.moveTo(x + R0, y);
-          ctx.arc(x, y, R0, 0, 6.2832);
+      for (var x = GAP / 2; x < bw; x += GAP) { var px = Math.round(x) + 0.5; ctx.moveTo(px, 0); ctx.lineTo(px, bh); }
+      for (var y = GAP / 2; y < bh; y += GAP) { var py = Math.round(y) + 0.5; ctx.moveTo(0, py); ctx.lineTo(bw, py); }
+      ctx.stroke();
+      // brighter nodes at the intersections
+      ctx.fillStyle = 'rgba(255,255,255,0.11)';
+      ctx.beginPath();
+      for (var gx = GAP / 2; gx < bw; gx += GAP) {
+        for (var gy = GAP / 2; gy < bh; gy += GAP) {
+          ctx.moveTo(gx + R0, gy);
+          ctx.arc(gx, gy, R0, 0, 6.2832);
         }
       }
       ctx.fill();
+      // radial vignette: keep it centred behind the hero, fade toward the edges
+      ctx.globalCompositeOperation = 'destination-in';
+      var g = ctx.createRadialGradient(bw * 0.5, bh * 0.4, 0, bw * 0.5, bh * 0.4, Math.max(bw, bh) * 0.8);
+      g.addColorStop(0, 'rgba(0,0,0,1)');
+      g.addColorStop(0.62, 'rgba(0,0,0,0.55)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, bw, bh);
+      ctx.globalCompositeOperation = 'source-over';
     }
     function resizeBg() {
       if (!cv || !ctx) return;
