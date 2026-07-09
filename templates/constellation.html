@@ -543,43 +543,57 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (perspective grid) ----------
-    // A receding "terminal floor": vertical lines fan from a vanishing point on
-    // the horizon and horizontal lines bunch toward it, scrolling very slowly
-    // toward the viewer. A linear mask fades the grid into the horizon and
-    // softens the bottom so it reads as depth without shouting.
+    // ---------- BACKGROUND (constellation) ----------
+    // Nodes drift very slowly; thin lines link the near ones and fade with
+    // distance, so a faint network slowly forms and breaks. A radial vignette
+    // concentrates it behind the hero and fades the edges so it stays calm.
     var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
-    var bw = 0, bh = 0, rafId = null, scroll = 0;
-    var ROWS = 18, COLS = 20, SCROLL_SPD = 0.008, HOR = 0.42;
-    function drawPersp() {
+    var bw = 0, bh = 0, rafId = null;
+    var LINK = 130, LINK2 = LINK * LINK, SPD = 0.12, R0 = 1.2, nodes = [];
+    function rnd() { return Math.random(); }
+    function initNodes() {
+      var n = Math.round(Math.min(90, Math.max(42, (bw * bh) / 22000)));
+      nodes = [];
+      for (var i = 0; i < n; i++) {
+        nodes.push({ x: rnd() * bw, y: rnd() * bh, vx: (rnd() * 2 - 1) * SPD, vy: (rnd() * 2 - 1) * SPD });
+      }
+    }
+    function stepNodes() {
+      for (var i = 0; i < nodes.length; i++) {
+        var p = nodes[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > bw) { p.vx = -p.vx; p.x = Math.max(0, Math.min(bw, p.x)); }
+        if (p.y < 0 || p.y > bh) { p.vy = -p.vy; p.y = Math.max(0, Math.min(bh, p.y)); }
+      }
+    }
+    function drawConst() {
       if (!ctx) return;
       ctx.clearRect(0, 0, bw, bh);
-      var cx = bw * 0.5, hy = bh * HOR, floorH = bh - hy;
+      // links
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255,255,255,0.085)';
-      // vertical lines fanning out from the vanishing point
-      ctx.beginPath();
-      for (var j = -COLS; j <= COLS; j++) {
-        var bx = cx + (j / COLS) * (bw * 0.62);
-        ctx.moveTo(cx, hy); ctx.lineTo(bx, bh);
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        for (var j = i + 1; j < nodes.length; j++) {
+          var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+          if (d2 > LINK2) continue;
+          var t = 1 - Math.sqrt(d2) / LINK;
+          ctx.strokeStyle = 'rgba(255,255,255,' + (t * 0.14).toFixed(3) + ')';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
       }
-      // horizontal lines, bunched near the horizon and scrolling toward viewer
-      var f = scroll - Math.floor(scroll);
-      for (var i = 0; i <= ROWS; i++) {
-        var frac = (i + f) / ROWS;      // 0..1 from horizon to foreground
-        var yy = hy + floorH * frac * frac;
-        ctx.moveTo(0, yy); ctx.lineTo(bw, yy);
+      // nodes
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      for (var k = 0; k < nodes.length; k++) {
+        ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, R0, 0, 6.2832); ctx.fill();
       }
-      ctx.stroke();
-      // fade into the horizon (top) and soften the very bottom
+      // vignette: concentrate behind the hero, dissolve toward the edges
       ctx.globalCompositeOperation = 'destination-in';
-      var g = ctx.createLinearGradient(0, hy, 0, bh);
-      g.addColorStop(0, 'rgba(0,0,0,0)');
-      g.addColorStop(0.20, 'rgba(0,0,0,0.9)');
-      g.addColorStop(0.82, 'rgba(0,0,0,0.9)');
-      g.addColorStop(1, 'rgba(0,0,0,0.12)');
+      var g = ctx.createRadialGradient(bw * 0.5, bh * 0.42, 0, bw * 0.5, bh * 0.42, Math.max(bw, bh) * 0.82);
+      g.addColorStop(0, 'rgba(0,0,0,1)');
+      g.addColorStop(0.62, 'rgba(0,0,0,0.6)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = g;
-      ctx.fillRect(0, hy - 1, bw, floorH + 2);
+      ctx.fillRect(0, 0, bw, bh);
       ctx.globalCompositeOperation = 'source-over';
     }
     function resizeBg() {
@@ -588,13 +602,14 @@
       bw = window.innerWidth; bh = window.innerHeight;
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (reduce) drawPersp();
+      initNodes();
+      if (reduce) drawConst();
     }
     if (ctx) {
       resizeBg();
       window.addEventListener('resize', resizeBg);
       if (!reduce) {
-        var loop = function () { scroll += SCROLL_SPD; drawPersp(); rafId = requestAnimationFrame(loop); };
+        var loop = function () { stepNodes(); drawConst(); rafId = requestAnimationFrame(loop); };
         rafId = requestAnimationFrame(loop);
       }
     }
