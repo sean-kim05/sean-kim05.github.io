@@ -543,10 +543,20 @@
     tickClock();
     setInterval(tickClock, 15000);
 
-    // ---------- BACKGROUND (dot field) ----------
+    // ---------- BACKGROUND (flow field) ----------
+    // Particles drift along an invisible vector field (approximated with a few
+    // crossing sines) and leave faint trails that fade to the black page. The
+    // field slowly reshapes over time, so the streams reorganize continuously.
     var cv = $('bgCanvas'), ctx = cv ? cv.getContext('2d') : null;
     var bw = 0, bh = 0, rafId = null;
-    var GAP = 34, R0 = 1.1;
+    var N = 130, SPEED = 0.9, parts = [];
+    function rnd() { return Math.random(); }
+    function spawn(p) {
+      p.x = rnd() * bw; p.y = rnd() * bh;
+      p.life = 0; p.max = 220 + rnd() * 320;
+      p.a = 0.10 + rnd() * 0.12; // per-particle line opacity, for depth
+    }
+    function initParts() { parts = []; for (var i = 0; i < N; i++) { var p = {}; spawn(p); parts.push(p); } }
     function resizeBg() {
       if (!cv || !ctx) return;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -554,33 +564,41 @@
       cv.width = Math.floor(bw * dpr); cv.height = Math.floor(bh * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    // self-animating grid: each dot orbits a little, with the phase shifting
-    // across space so the whole field undulates as a slow travelling wave.
-    var AMP = 5;
-    function frameGrid(T) {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, bw, bh);
-      // extend the bounds by one cell so edge dots stay covered as they sway
-      for (var x = GAP / 2 - GAP; x < bw + GAP; x += GAP) {
-        for (var y = GAP / 2 - GAP; y < bh + GAP; y += GAP) {
-          var ph = x * 0.011 + y * 0.013;
-          var ox = Math.sin(ph + T * 0.5) * AMP;   // small circular orbit,
-          var oy = Math.cos(ph - T * 0.42) * AMP;  // phase varies across the grid
-          var w = Math.sin(x * 0.010 + T * 0.55) * Math.sin(y * 0.011 - T * 0.42);
-          var f = (w + 1) * 0.5; // 0..1 brightness/size ripple
-          ctx.beginPath();
-          ctx.fillStyle = 'rgba(255,255,255,' + (0.035 + f * 0.09).toFixed(3) + ')';
-          ctx.arc(x + ox, y + oy, R0 + f * 0.7, 0, 6.2832);
-          ctx.fill();
-        }
+    function flowAngle(x, y, t) {
+      return (Math.sin(x * 0.0016 + t * 0.20) +
+              Math.cos(y * 0.0020 - t * 0.15) +
+              Math.sin((x + y) * 0.0011 + t * 0.10)) * 1.4;
+    }
+    function frameFlow(t) {
+      // fade the previous frame toward black to age the trails
+      ctx.fillStyle = 'rgba(0,0,0,0.055)';
+      ctx.fillRect(0, 0, bw, bh);
+      ctx.lineWidth = 1;
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        var ang = flowAngle(p.x, p.y, t);
+        var nx = p.x + Math.cos(ang) * SPEED, ny = p.y + Math.sin(ang) * SPEED;
+        ctx.strokeStyle = 'rgba(255,255,255,' + p.a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny); ctx.stroke();
+        p.x = nx; p.y = ny; p.life++;
+        if (p.life > p.max || nx < -30 || nx > bw + 30 || ny < -30 || ny > bh + 30) spawn(p);
       }
     }
-    function frameBg() { frameGrid(Date.now() / 1000); }
+    function frameStatic() { // reduced-motion: one calm scatter of dots
+      ctx.clearRect(0, 0, bw, bh);
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      for (var i = 0; i < parts.length; i++) {
+        ctx.beginPath(); ctx.arc(parts[i].x, parts[i].y, 1.1, 0, 6.2832); ctx.fill();
+      }
+    }
+    function frameBg() { frameFlow(Date.now() / 1000); }
     if (ctx) {
       resizeBg();
+      initParts();
       window.addEventListener('resize', resizeBg);
-      frameBg();
-      if (!reduce) {
+      if (reduce) {
+        frameStatic();
+      } else {
         var loop = function () { frameBg(); rafId = requestAnimationFrame(loop); };
         rafId = requestAnimationFrame(loop);
       }
