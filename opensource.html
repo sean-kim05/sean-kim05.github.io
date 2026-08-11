@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Open source — Sean Kim</title>
+  <meta name="description" content="Open-source contributions by Sean Kim — merged patches to three.js, Strix, Pydantic AI, redis-py, and the Prometheus Python client."/>
+
+  <meta property="og:title" content="Open source — Sean Kim"/>
+  <meta property="og:description" content="Open-source contributions by Sean Kim — merged patches to three.js, Strix, Pydantic AI, redis-py, and the Prometheus Python client."/>
+  <meta property="og:url" content="https://sean-kim05.github.io/opensource.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://sean-kim05.github.io/assets/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://sean-kim05.github.io/assets/og.png"/>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1a17'/%3E%3Crect x='8' y='9' width='16' height='3' rx='1.5' fill='%239a4f21'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23f8f7f3'/%3E%3Crect x='8' y='20' width='10' height='3' rx='1.5' fill='%23f8f7f3'/%3E%3C/svg%3E"/>
+  <link rel="canonical" href="https://sean-kim05.github.io/opensource.html"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="shell">
+
+    <aside class="rail">
+      <h1><a href="index.html">Sean Kim</a></h1>
+      <p class="role">Software engineer — full-stack &amp; AI</p>
+      <p class="where mono">Irvine, CA · UC Irvine '27</p>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="opensource.html" class="on">Open source</a>
+      </nav>
+
+      <div class="rail-links">
+        <a href="mailto:skim8705@gmail.com">skim8705@gmail.com</a>
+        <a href="https://github.com/sean-kim05" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
+        <a href="https://linkedin.com/in/seankim08" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
+      </div>
+
+      <a class="rez mono" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">Resume ↓</a>
+    </aside>
+
+    <main class="main">
+      <h2 class="ptitle">Open source</h2>
+      <p class="psub">Patches merged into libraries I actually use. Mostly correctness work — edge cases that were quietly wrong, found while building something else and fixed upstream instead of worked around.</p>
+
+      <div class="metrics">
+        <div class="metric"><b>14</b><span class="mono">patches merged</span></div>
+        <div class="metric"><b>5</b><span class="mono">projects</span></div>
+        <div class="metric"><b>200k+</b><span class="mono">combined stars</span></div>
+      </div>
+
+      <section>
+        <div class="shead mono">Merged</div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">three.js</span> <span class="eorg">· JavaScript 3D library</span></div>
+            <span class="edate mono">114k ★ · 3 merged</span>
+          </div>
+          <ul class="prs">
+            <li>
+              <a href="https://github.com/mrdoob/three.js/pull/34035" target="_blank" rel="noopener"><span class="prnum mono">#34035</span> <span>AnimationObjectGroup: fix stale index bookkeeping in <code>uncache()</code> and <code>unsubscribe_()</code></span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/mrdoob/three.js/pull/34034" target="_blank" rel="noopener"><span class="prnum mono">#34034</span> <span>TorusGeometry: forward <code>thetaStart</code> and <code>thetaLength</code> in <code>fromJSON()</code></span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/mrdoob/three.js/pull/34016" target="_blank" rel="noopener"><span class="prnum mono">#34016</span> <span>Ray: handle empty spheres in <code>intersectSphere()</code></span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Strix</span> <span class="eorg">· open-source AI penetration testing tool</span></div>
+            <span class="edate mono">51k ★ · 2 merged</span>
+          </div>
+          <ul class="prs">
+            <li>
+              <a href="https://github.com/usestrix/strix/pull/689" target="_blank" rel="noopener"><span class="prnum mono">#689</span> <span>Config: make env vars win over persisted JSON across all aliases</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/usestrix/strix/pull/687" target="_blank" rel="noopener"><span class="prnum mono">#687</span> <span>TUI: show “more content available” for <code>view_request</code> over 15 lines</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Pydantic AI</span> <span class="eorg">· AI agent framework</span></div>
+            <span class="edate mono">19k ★ · 3 merged</span>
+          </div>
+          <ul class="prs">
+            <li>
+              <a href="https://github.com/pydantic/pydantic-ai/pull/7357" target="_blank" rel="noopener"><span class="prnum mono">#7357</span> <span>Gate <code>RetryPromptPart</code> OpenTelemetry content on <code>include_content</code></span></a>
+              <span class="prwhen mono">Aug 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/pydantic/pydantic-ai/pull/6466" target="_blank" rel="noopener"><span class="prnum mono">#6466</span> <span>Fix <code>has_values()</code> returning <code>True</code> for all-zero usage details</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/pydantic/pydantic-ai/pull/6462" target="_blank" rel="noopener"><span class="prnum mono">#6462</span> <span>Fix <code>RenamedToolset</code> silently dropping a tool on a name collision</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">redis-py</span> <span class="eorg">· official Redis Python client</span></div>
+            <span class="edate mono">13.6k ★ · 1 merged</span>
+          </div>
+          <ul class="prs">
+            <li>
+              <a href="https://github.com/redis/redis-py/pull/4167" target="_blank" rel="noopener"><span class="prnum mono">#4167</span> <span>Add context manager support to <code>ConnectionPool</code></span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Prometheus Python client</span> <span class="eorg">· official instrumentation library</span></div>
+            <span class="edate mono">4.3k ★ · 5 merged</span>
+          </div>
+          <ul class="prs">
+            <li>
+              <a href="https://github.com/prometheus/client_python/pull/1192" target="_blank" rel="noopener"><span class="prnum mono">#1192</span> <span>Parse the native histogram sum as a float</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/prometheus/client_python/pull/1191" target="_blank" rel="noopener"><span class="prnum mono">#1191</span> <span>Remove nameless collectors from the registry on unregister</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/prometheus/client_python/pull/1188" target="_blank" rel="noopener"><span class="prnum mono">#1188</span> <span>Fix operator precedence allowing exemplars on any metric type</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/prometheus/client_python/pull/1190" target="_blank" rel="noopener"><span class="prnum mono">#1190</span> <span>Do not emit a leading zero in <code>floatToGoString</code> exponents ≥ 10</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+            <li>
+              <a href="https://github.com/prometheus/client_python/pull/1189" target="_blank" rel="noopener"><span class="prnum mono">#1189</span> <span>Validate Enum arguments before registering the collector</span></a>
+              <span class="prwhen mono">Jul 2026</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="shead mono">In review</div>
+        <p class="pnote">Open patches under review at <strong>Anthropic&rsquo;s Python SDK</strong>, <strong>Ollama</strong>, <strong>ComfyUI</strong>, <strong>redis-py</strong>, and the <strong>Prometheus Python client</strong>.</p>
+        <div class="etags"><span><a href="https://github.com/sean-kim05" target="_blank" rel="noopener">github.com/sean-kim05 ↗</a></span></div>
+      </section>
+
+      <footer>
+        <span class="mono">© 2026 Sean Kim</span>
+      </footer>
+    </main>
+  </div>
+
+</body>
+</html>

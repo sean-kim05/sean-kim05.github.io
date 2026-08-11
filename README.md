@@ -2,7 +2,7 @@
 
 **Live:** [sean-kim05.github.io](https://sean-kim05.github.io/)
 
-My personal portfolio — a hand-built, **single-file site** (no framework, no build step) showcasing my experience, projects, and skills as a Computer Science student at **UC Irvine (Class of 2027)**.
+My personal portfolio — a hand-built static site (no framework, no build step) covering my experience, projects, and skills as a Computer Science student at **UC Irvine (Class of 2027)**.
 
 ![Portfolio preview](preview.png)
 
@@ -10,15 +10,14 @@ My personal portfolio — a hand-built, **single-file site** (no framework, no b
 
 ## ✨ The site itself
 
-Built from scratch in vanilla **HTML / CSS / JS** — one `index.html`, zero dependencies, zero build step. Black editorial theme, **Archivo · IBM Plex Mono**.
+Four pages of vanilla **HTML and CSS** — `index.html`, `experience.html`, `projects.html`, `opensource.html` — sharing a single `style.css`. **Zero JavaScript**, zero dependencies, no build step. Warm paper theme on a system font stack, with a burnt-orange accent.
 
-- **Interactive `⌘K` terminal** — a real command line (`help`, `whoami`, `projects`, `skills`, `resume`, `contact`, `theme`, `date`, `ls`, `clear`) with a `sudo hire sean` easter egg
-- **Self-typing hero terminal** that boots the page — `whoami` → `ls projects/` → `open collabcode --stats`
-- **Expandable work index** with an animated SVG architecture diagram for CollabCode (packets fanning out across the room in real time)
-- Live Irvine clock, copy-to-clipboard email, and a tab title that calls you back when you leave
-- **Keyboard-driven**: `1–4` jump to sections, `` ` `` or `⌘K` opens the terminal, `Esc` closes; `theme` cycles the accent color
-- Layered background — radial glow, faint grid, and SVG film-grain noise
-- Fully responsive down to a single-column mobile layout
+- **Sticky left rail** carrying identity, nav, contact links, and the resume download; content scrolls independently on the right
+- **Paper-grain background** — a fine dot lattice under a radial mask, static rather than animated
+- **Benchmarked project write-ups** — the numbers on the projects page come from benchmark scripts in each repo, and each one states what it was measured against
+- Collapses to a single column at 900px, and honors `prefers-reduced-motion`
+
+`templates/` holds three earlier design directions (`constellation`, `cream-calm`, `plain`), kept for reference and excluded from the live site.
 
 ---
 
@@ -26,26 +25,44 @@ Built from scratch in vanilla **HTML / CSS / JS** — one `index.html`, zero dep
 
 | Project | What it is | Stack | Links |
 |---|---|---|---|
-| **CollabCode** | Real-time collaborative code editor — live cursors, follow mode, multi-file rooms. **50 concurrent clients/room @ 17 ms p95 sync latency**; Redis / PostgreSQL persistence; Claude across 4 streaming modes (generate · fix · explain · improve) with sandboxed server-side execution | React, TypeScript, Monaco, Flask-SocketIO, Redis, PostgreSQL, Claude API | [Live](https://collaborative-code-editor-livid.vercel.app) · [Code](https://github.com/sean-kim05/collaborative-code-editor) |
-| **Ada** | Personal agent OS — give it a goal and watch a live trace stream every step (plan → tool call → observe → final). A model router sends cheap subtasks to a local Qwen-14B and hard reasoning to Claude | FastAPI, PydanticAI, React, Vite, PostgreSQL, Redis, Qdrant | [Code](https://github.com/sean-kim05/ada) |
-| **Docent** | Agentic research assistant — decomposes a question into sub-questions, routes each to your docs or the live web, retrieves + reranks, and streams one grounded answer with inline citations. Hand-rolled RAG, no LangChain/LlamaIndex | Next.js, TypeScript, FastAPI, Pinecone, Voyage, Tavily | [Live](https://agentic-research-assistant-nine.vercel.app) |
-| **Briefly** | AI standup tool living entirely at the edge — a custom SSE pipeline streams Llama 3.3 tokens live while the full response is captured server-side; weekly summaries run as a separate inference pass | Cloudflare Workers, Durable Objects, Workers AI, Llama 3.3 | [Live](https://cf-ai-standup.skim8705.workers.dev) · [Code](https://github.com/sean-kim05/cf_ai_standup) |
+| **CollabCode** | Real-time collaborative code editor — live cursors, follow mode, multi-file rooms. Three-layer persistence (memory → Redis → Postgres) so a server restart doesn't cost anyone their room. **50 clients/room at <17 ms p95 sync**; Claude assists inline across generate · fix · explain · improve | React 18, TypeScript, Vite, Monaco, Socket.IO, Flask-SocketIO, Postgres, Redis, Claude | [Live](https://collaborative-code-editor-livid.vercel.app) · [Code](https://github.com/sean-kim05/collaborative-code-editor) |
+| **Ada** | Personal agent cockpit — give it a goal and watch the trace panel stream every step (plan → tool call → observe). Claude orchestrates; a local Qwen-14B on Ollama absorbs the cheap subtasks | FastAPI, Pydantic AI, React, TypeScript, Postgres, Redis, Qdrant, Claude, Ollama | [Code](https://github.com/sean-kim05/ada) |
+| **Docent** | Agentic research assistant — decomposes a question into sub-questions, routes each to your docs or the live web, retrieves and reranks, then streams one grounded answer with inline citations. Hand-rolled RAG, no LangChain/LlamaIndex | Next.js, TypeScript, Tailwind, FastAPI, Pinecone, Voyage, Tavily, Claude | [Live](https://ask-docent.vercel.app) · [Code](https://github.com/sean-kim05/agentic-research-assistant) |
+| **Briefly** | AI standups living entirely at the edge — a Worker routes, Workers AI runs Llama 3.3 70B, and a Durable Object per user holds 100 past standups. **<450 ms p95 to first token**; weekly summaries chain a second inference pass | Cloudflare Workers, Durable Objects, Workers AI, Llama 3.3 70B, SSE | [Live](https://briefly.skim8705.workers.dev) · [Code](https://github.com/sean-kim05/briefly) |
 
 ---
 
 ## 💼 Experience
 
-- **MIADVG** — *Software Engineer Intern* (Jun – Sep 2025, Irvine, CA): shipped & maintained 3 React/**Next.js** apps in TypeScript with Tailwind to **10,000+ combined users**; built Express/Node REST endpoints across PostgreSQL & MySQL with OAuth 2.0, Stripe & Twilio; automated CI/CD on AWS EC2 via GitHub Actions + Vitest (2–3 releases/week).
-- **CALIT2, UC Irvine** — *Software Developer Intern* (Jan – May 2025, Costa Mesa, CA): built a Flask-SocketIO backend streaming 5+ camera feeds to a React dashboard over WebSockets at **100–200 ms latency**; deduplicated detections with Redis TTL keys and routed events through RabbitMQ priority queues; fine-tuned YOLO with PyTorch transfer learning (**+8 mAP**).
-- **UC Irvine** — *Undergraduate Research Assistant* (Jan – Jun 2024, Irvine, CA): built Python ETL pipelines (BeautifulSoup, PyPDF2, Pandas) normalizing thousands of UCI PDF/HTML docs into training-ready text for iGPT, and evaluated GPT-3.5 outputs on UCI-specific queries — early-stage work that later became **ZotGPT**.
+- **MIADVG** — *Software Engineer Intern* (Jun – Sep 2025, Irvine, CA): built and shipped 3 production React/**Next.js** apps in TypeScript with Tailwind serving **50,000+ combined users**; developed 10+ Express endpoints over PostgreSQL and MySQL, cutting API latency **67%** (300 ms → 100 ms) by collapsing 100+ per-item queries into a single JOIN; integrated Stripe, Twilio, and Google OAuth 2.0; automated AWS EC2 deploys via GitHub Actions + Vitest (2–3 releases/week).
+- **CALIT2, UC Irvine** — *Software Developer Intern* (Jan – May 2025, Costa Mesa, CA): built a Flask-SocketIO backend streaming 5+ camera feeds to a React dashboard over WebSockets at **100–200 ms** latency; cut duplicate alerts **40%** with a Redis TTL cache and RabbitMQ priority queues; fine-tuned YOLO with PyTorch transfer learning (**+8 mAP**).
+- **UC Irvine** — *Undergraduate Research Assistant* (Jan – Jun 2024, Irvine, CA): built Python ETL pipelines (BeautifulSoup, PyPDF2, Pandas) normalizing thousands of UCI PDF/HTML docs into training-ready text for iGPT, and evaluated fine-tuned GPT-3.5 on UCI-specific queries — early-stage work that later became **ZotGPT**.
+
+---
+
+## 🌱 Open source
+
+**14 patches merged** into libraries I use — mostly correctness fixes for edge cases found while building something else and fixed upstream instead of worked around. Full list with links: [opensource.html](https://sean-kim05.github.io/opensource.html).
+
+| Project | Merged | What it is |
+|---|---|---|
+| [three.js](https://github.com/mrdoob/three.js) | 3 | JavaScript 3D library (114k ★) |
+| [Strix](https://github.com/usestrix/strix) | 2 | Open-source AI penetration testing tool (51k ★) |
+| [Pydantic AI](https://github.com/pydantic/pydantic-ai) | 3 | AI agent framework (19k ★) |
+| [redis-py](https://github.com/redis/redis-py) | 1 | Official Redis Python client (13.6k ★) |
+| [Prometheus Python client](https://github.com/prometheus/client_python) | 5 | Official instrumentation library (4.3k ★) |
+
+More in review at Anthropic's Python SDK, Ollama, and ComfyUI.
 
 ---
 
 ## 🧰 Tech stack
 
-- **Languages:** Python · TypeScript · JavaScript · Java · C++ · SQL
-- **Frameworks:** React · Next.js · Node.js · Express · Flask · Tailwind CSS · WebSockets
-- **Infra & AI:** AWS EC2 · Cloudflare Workers · Docker · RabbitMQ · Redis · PostgreSQL · MySQL · Claude API · PyTorch · YOLO
+- **Languages:** Python · TypeScript · JavaScript · Java · C++ · SQL · HTML/CSS
+- **Frameworks:** React · Next.js · Node/Express · Flask · FastAPI · Tailwind · WebSockets
+- **Data:** PostgreSQL · MySQL · Redis · Pinecone · Qdrant · Vector search
+- **Infra:** Git · Linux · Docker · AWS EC2 · Cloudflare Workers · RabbitMQ · GitHub Actions · pytest · Vitest
+- **AI / ML:** RAG · Agentic pipelines · Fine-tuning · PyTorch · YOLO · Anthropic SDK
 
 ---
 
@@ -58,12 +75,19 @@ git clone https://github.com/sean-kim05/sean-kim05.github.io.git
 cd sean-kim05.github.io
 
 # open index.html directly, or serve it:
-python -m http.server 8000   # → http://localhost:8000
+python3 -m http.server 8000   # → http://localhost:8000
+```
+
+The one dev dependency is [`sharp`](https://sharp.pixelplumbing.com/), used offline to convert project screenshots from PNG to WebP. It is never needed to run or deploy the site — only to regenerate `assets/*.webp`:
+
+```bash
+npm install
+node -e "require('sharp')('assets/collabcode.png').webp({quality:82}).toFile('assets/collabcode.webp')"
 ```
 
 ## 🚢 Deploy
 
-Hosted on **GitHub Pages**. Pushing to `main` auto-deploys to [sean-kim05.github.io](https://sean-kim05.github.io/).
+Hosted on **GitHub Pages** — the single source of truth. Pushing to `main` auto-deploys to [sean-kim05.github.io](https://sean-kim05.github.io/); every page declares a `rel="canonical"` pointing there.
 
 ---
 
@@ -72,4 +96,4 @@ Hosted on **GitHub Pages**. Pushing to `main` auto-deploys to [sean-kim05.github
 - **Email:** skim8705@gmail.com
 - **LinkedIn:** [/in/seankim08](https://linkedin.com/in/seankim08)
 - **GitHub:** [/sean-kim05](https://github.com/sean-kim05)
-- **Résumé:** [assets/Sean_Kim_Resume.pdf](assets/Sean_Kim_Resume.pdf)
+- **Resume:** [assets/Sean_Kim_Resume.pdf](assets/Sean_Kim_Resume.pdf)

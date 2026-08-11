@@ -8,13 +8,14 @@
 
   <meta property="og:title" content="Projects — Sean Kim"/>
   <meta property="og:description" content="Projects by Sean Kim — CollabCode, Ada, Docent, and Briefly. Real-time systems and AI products built end to end, with benchmarks."/>
-  <meta property="og:url" content="https://sean-kim05.github.io"/>
+  <meta property="og:url" content="https://sean-kim05.github.io/projects.html"/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="https://sean-kim05.github.io/assets/og.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image" content="https://sean-kim05.github.io/assets/og.png"/>
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1a17'/%3E%3Cpath d='M8 9 L15 16 L8 23' fill='none' stroke='%23f8f7f3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='16.5' y='21' width='8' height='3' rx='1.2' fill='%23f8f7f3'/%3E%3C/svg%3E"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1a17'/%3E%3Crect x='8' y='9' width='16' height='3' rx='1.5' fill='%239a4f21'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23f8f7f3'/%3E%3Crect x='8' y='20' width='10' height='3' rx='1.5' fill='%23f8f7f3'/%3E%3C/svg%3E"/>
+  <link rel="canonical" href="https://sean-kim05.github.io/projects.html"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -30,6 +31,7 @@
         <a href="index.html">Home</a>
         <a href="experience.html">Experience</a>
         <a href="projects.html" class="on">Projects</a>
+        <a href="opensource.html">Open source</a>
       </nav>
 
       <div class="rail-links">
@@ -38,9 +40,7 @@
         <a href="https://linkedin.com/in/seankim08" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
       </div>
 
-      <a class="rez mono" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">Résumé ↓</a>
-
-      <button class="kbd-hint" id="termCta">press <kbd>⌘K</kbd> for a shell</button>
+      <a class="rez mono" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">Resume ↓</a>
     </aside>
 
     <main class="main">
@@ -57,7 +57,7 @@
               <a class="plink" href="https://github.com/sean-kim05/collaborative-code-editor" target="_blank" rel="noopener">source ↗</a>
             </div>
             <img class="pshot" src="assets/collabcode.webp" width="1440" height="900" loading="lazy" decoding="async" alt="CollabCode editor with live cursors and the AI assistant panel"/>
-            <p class="pdesc">A real-time collaborative code editor — VS Code meets Google Docs. Shared rooms with live cursors, Figma-style follow mode, multi-file tabs, in-browser JavaScript and server-side Python execution, auto-snapshot version history, sandboxed server-side Python execution, and a Claude assistant that explains, fixes, improves, or generates code inline.</p>
+            <p class="pdesc">A real-time collaborative code editor — VS Code meets Google Docs. Shared rooms with live cursors, Figma-style follow mode, multi-file tabs, in-browser JavaScript and sandboxed server-side Python execution, auto-snapshot version history, and a Claude assistant that explains, fixes, improves, or generates code inline.</p>
             <p class="pnote"><strong>The interesting part is state.</strong> Persistence runs three layers deep — in-memory, Redis, then Postgres as the source of truth. On boot Postgres hydrates Redis; active rooms serve out of Redis, and cold reads fall through to Postgres. A server restart doesn't cost anyone their room.</p>
             <div class="metrics">
               <div class="metric"><b>&lt;17 ms</b><span class="mono">p95 sync, 50 clients</span></div>
@@ -127,18 +127,5 @@
     </main>
   </div>
 
-  <div class="term" id="term" hidden>
-    <div class="term-bar">
-      <span>Terminal — zsh</span>
-      <button class="term-close" id="termClose">esc ✕</button>
-    </div>
-    <div class="term-body" id="termBody"></div>
-    <div class="term-row">
-      <span class="term-ps">sean@portfolio:~$</span>
-      <input class="term-in" id="termIn" spellcheck="false" autocomplete="off" aria-label="terminal input"/>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
 </body>
 </html>
