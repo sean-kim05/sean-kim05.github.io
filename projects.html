@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Projects — Sean Kim</title>
+  <meta name="description" content="Projects by Sean Kim — CollabCode, Ada, Docent, and Briefly. Real-time systems and AI products built end to end, with benchmarks."/>
+
+  <meta property="og:title" content="Projects — Sean Kim"/>
+  <meta property="og:description" content="Projects by Sean Kim — CollabCode, Ada, Docent, and Briefly. Real-time systems and AI products built end to end, with benchmarks."/>
+  <meta property="og:url" content="https://sean-kim-gamma.vercel.app"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://sean-kim-gamma.vercel.app/assets/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://sean-kim-gamma.vercel.app/assets/og.png"/>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1a17'/%3E%3Cpath d='M8 9 L15 16 L8 23' fill='none' stroke='%23f8f7f3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='16.5' y='21' width='8' height='3' rx='1.2' fill='%23f8f7f3'/%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="shell">
+
+    <aside class="rail">
+      <h1><a href="index.html">Sean Kim</a></h1>
+      <p class="role">Software engineer — full-stack &amp; AI</p>
+      <p class="where mono">Irvine, CA · UC Irvine '27</p>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html" class="on">Projects</a>
+      </nav>
+
+      <div class="rail-links">
+        <a href="mailto:skim8705@gmail.com">skim8705@gmail.com</a>
+        <a href="https://github.com/sean-kim05" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
+        <a href="https://linkedin.com/in/seankim08" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
+      </div>
+
+      <a class="rez mono" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">Résumé ↓</a>
+
+      <button class="kbd-hint" id="termCta">press <kbd>⌘K</kbd> for a shell</button>
+    </aside>
+
+    <main class="main">
+      <h2 class="ptitle">Projects</h2>
+      <p class="psub">Four things I built end to end — design, backend, frontend, deploy. Demos are live; the numbers below come from benchmark scripts that live in each repo.</p>
+
+      <section>
+        <div class="proj">
+          <div class="pnum mono">01</div>
+          <div>
+            <div class="ptop">
+              <span class="pname">CollabCode</span>
+              <a class="plink" href="https://collaborative-code-editor-livid.vercel.app" target="_blank" rel="noopener">live demo ↗</a>
+              <a class="plink" href="https://github.com/sean-kim05/collaborative-code-editor" target="_blank" rel="noopener">source ↗</a>
+            </div>
+            <img class="pshot" src="assets/collabcode.webp" width="1440" height="900" loading="lazy" decoding="async" alt="CollabCode editor with live cursors and the AI assistant panel"/>
+            <p class="pdesc">A real-time collaborative code editor — VS Code meets Google Docs. Shared rooms with live cursors, Figma-style follow mode, multi-file tabs, in-browser JavaScript and server-side Python execution, auto-snapshot version history, and a Claude assistant that explains, fixes, improves, or generates code inline.</p>
+            <p class="pnote"><strong>The interesting part is state.</strong> Postgres is the source of truth and Redis is the cache in front of it. On boot, Postgres hydrates Redis; active rooms serve out of Redis, and cold reads fall back to Postgres. A server restart doesn't cost anyone their room.</p>
+            <div class="metrics">
+              <div class="metric"><b>&lt;17 ms</b><span class="mono">p95 sync, 50 clients</span></div>
+              <div class="metric"><b>0</b><span class="mono">drops in 43,500 msgs</span></div>
+              <div class="metric"><b>500/s</b><span class="mono">sustained, no loss</span></div>
+            </div>
+            <p class="caveat">Measured on loopback, not over the internet — public RTT would swamp what the numbers are actually testing. The persistence benchmark is deliberately unrun: without Postgres configured locally the cold-read path collapses to an in-memory dict, so the comparison would be meaningless.</p>
+            <div class="stack"><span>React 18</span><span>TypeScript</span><span>Vite</span><span>Monaco</span><span>Socket.IO</span><span>Flask-SocketIO</span><span>Postgres</span><span>Redis</span><span>Claude</span></div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="pnum mono">02</div>
+          <div>
+            <div class="ptop">
+              <span class="pname">Ada</span>
+              <span class="plock mono">in progress</span>
+            </div>
+            <img class="pshot" src="assets/ada.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Ada dashboard with a live agent trace panel"/>
+            <p class="pdesc">A personal agent cockpit. Give it a goal — "add a task to prep for the panel, then list my tasks" — and watch the trace panel stream each step as the agent plans, calls tools, and observes what came back.</p>
+            <p class="pnote">Pydantic AI drives the agent loop with typed tool calls; Postgres, Redis, and Qdrant run in Docker behind it. Claude orchestrates, and a local Qwen-14B on Ollama picks up the cheap subtasks so routine steps don't cost API calls.</p>
+            <div class="stack"><span>FastAPI</span><span>Pydantic AI</span><span>React</span><span>TypeScript</span><span>Postgres</span><span>Redis</span><span>Qdrant</span><span>Claude</span><span>Qwen-14B / Ollama</span></div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="pnum mono">03</div>
+          <div>
+            <div class="ptop">
+              <span class="pname">Docent</span>
+              <a class="plink" href="https://ask-docent.vercel.app" target="_blank" rel="noopener">live demo ↗</a>
+              <a class="plink" href="https://github.com/sean-kim05/agentic-research-assistant" target="_blank" rel="noopener">source ↗</a>
+            </div>
+            <img class="pshot" src="assets/docent.webp" width="1440" height="1000" loading="lazy" decoding="async" alt="Docent answering a research question with inline citations"/>
+            <p class="pdesc">An agentic research assistant. Ask something complicated and it decomposes the question, retrieves from your uploaded documents <em>and</em> the live web, then streams back a structured answer you can trace to its sources.</p>
+            <p class="pnote"><strong>Plan, route, retrieve, synthesize.</strong> Claude splits the question into 2–4 sub-questions and routes each one to docs, web, or both using structured outputs. Retrieval runs Voyage <code>voyage-3</code> embeddings against Pinecone by cosine similarity, plus Tavily for the web; results merge, dedupe, and rank. The final answer cites inline as <code>[n]</code>, and plan → sources → tokens all stream over SSE. The RAG is plain Python — no LangChain, no LlamaIndex — so the mechanics stay visible.</p>
+            <p class="caveat">Frontend on Vercel, backend on Render's free tier — the first request after an idle period is slow while the backend wakes up.</p>
+            <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>FastAPI</span><span>Pinecone</span><span>Voyage</span><span>Claude</span><span>Tavily</span><span>SSE</span></div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="pnum mono">04</div>
+          <div>
+            <div class="ptop">
+              <span class="pname">Briefly</span>
+              <a class="plink" href="https://briefly.skim8705.workers.dev" target="_blank" rel="noopener">live demo ↗</a>
+              <a class="plink" href="https://github.com/sean-kim05/briefly" target="_blank" rel="noopener">source ↗</a>
+            </div>
+            <img class="pshot" src="assets/briefly.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Briefly turning messy notes into a structured standup"/>
+            <p class="pdesc">AI standups at the edge. Paste messy notes about your day and get back a clean Yesterday / Today / Blockers standup, streamed token by token from Llama 3.3 70B.</p>
+            <p class="pnote">The whole thing runs on Cloudflare — a Worker handles routing, Workers AI runs the model, and a Durable Object per user holds up to 100 past standups. The weekly summary chains a second model call across the last seven. No servers, and nothing running when it's idle.</p>
+            <div class="metrics">
+              <div class="metric"><b>&lt;450 ms</b><span class="mono">p95 time to first token</span></div>
+              <div class="metric"><b>0</b><span class="mono">failures in 90 runs</span></div>
+              <div class="metric"><b>4.2 s</b><span class="mono">p50 weekly summary</span></div>
+            </div>
+            <p class="caveat">Measured against the deployed Worker from California, not a local dev server — Workers AI proxies to remote infrastructure in dev mode, so those numbers wouldn't mean anything.</p>
+            <div class="stack"><span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3 70B</span><span>SSE</span></div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span class="mono">© 2026 Sean Kim</span>
+        <span class="mono">Built from scratch — no framework</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="term" id="term" hidden>
+    <div class="term-bar">
+      <span>Terminal — zsh</span>
+      <button class="term-close" id="termClose">esc ✕</button>
+    </div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-row">
+      <span class="term-ps">sean@portfolio:~$</span>
+      <input class="term-in" id="termIn" spellcheck="false" autocomplete="off" aria-label="terminal input"/>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Experience — Sean Kim</title>
+  <meta name="description" content="Sean Kim's experience — software engineering internships at MIADVG and CALIT2, plus undergraduate research at UC Irvine."/>
+
+  <meta property="og:title" content="Experience — Sean Kim"/>
+  <meta property="og:description" content="Sean Kim's experience — software engineering internships at MIADVG and CALIT2, plus undergraduate research at UC Irvine."/>
+  <meta property="og:url" content="https://sean-kim-gamma.vercel.app"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://sean-kim-gamma.vercel.app/assets/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://sean-kim-gamma.vercel.app/assets/og.png"/>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1a17'/%3E%3Cpath d='M8 9 L15 16 L8 23' fill='none' stroke='%23f8f7f3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='16.5' y='21' width='8' height='3' rx='1.2' fill='%23f8f7f3'/%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="shell">
+
+    <aside class="rail">
+      <h1><a href="index.html">Sean Kim</a></h1>
+      <p class="role">Software engineer — full-stack &amp; AI</p>
+      <p class="where mono">Irvine, CA · UC Irvine '27</p>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="experience.html" class="on">Experience</a>
+        <a href="projects.html">Projects</a>
+      </nav>
+
+      <div class="rail-links">
+        <a href="mailto:skim8705@gmail.com">skim8705@gmail.com</a>
+        <a href="https://github.com/sean-kim05" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
+        <a href="https://linkedin.com/in/seankim08" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
+      </div>
+
+      <a class="rez mono" href="assets/Sean_Kim_Resume.pdf" download="Sean_Kim_Resume.pdf">Résumé ↓</a>
+
+      <button class="kbd-hint" id="termCta">press <kbd>⌘K</kbd> for a shell</button>
+    </aside>
+
+    <main class="main">
+      <h2 class="ptitle">Experience</h2>
+      <p class="psub">Two internships and a research post. Backend and real-time systems, mostly — plus whatever the product needed that week.</p>
+
+      <section>
+        <div class="shead mono">Work</div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Software Engineer Intern</span> <span class="eorg">· MIADVG</span></div>
+            <span class="edate mono">Jun–Sep 2025</span>
+          </div>
+          <ul>
+            <li>Shipped and maintained 3 production React &amp; Next.js apps in TypeScript with Tailwind, serving 50,000+ combined users, in 2-week Agile sprints.</li>
+            <li>Built Express REST APIs on Node.js connecting React frontends to PostgreSQL and MySQL, with OAuth 2.0 auth and Stripe + Twilio integrations.</li>
+            <li>Automated AWS EC2 deployments via a GitHub Actions CI/CD pipeline — builds and a Vitest suite on every merge to main, shipping 2–3 releases weekly.</li>
+          </ul>
+          <div class="etags"><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node/Express</span><span>PostgreSQL</span><span>MySQL</span><span>AWS EC2</span><span>GitHub Actions</span></div>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Software Developer Intern</span> <span class="eorg">· CALIT2, UC Irvine</span></div>
+            <span class="edate mono">Jan–May 2025</span>
+          </div>
+          <ul>
+            <li>Built a Python Flask-SocketIO backend streaming real-time detections from 5+ camera feeds to a React security dashboard over WebSockets at 100–200ms latency.</li>
+            <li>Cut duplicate alerts by 40% with a pipeline that deduplicated detections via a Redis TTL cache and routed them through RabbitMQ priority queues.</li>
+            <li>Fine-tuned YOLO with PyTorch transfer learning on client footage, improving validation mAP by 8 points over the stock baseline.</li>
+          </ul>
+          <div class="etags"><span>Python</span><span>Flask-SocketIO</span><span>WebSockets</span><span>Redis</span><span>RabbitMQ</span><span>PyTorch</span><span>YOLO</span></div>
+        </div>
+
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">Undergraduate Research Assistant</span> <span class="eorg">· UC Irvine</span></div>
+            <span class="edate mono">Jan–Jun 2024</span>
+          </div>
+          <ul>
+            <li>Created Python ETL pipelines (BeautifulSoup, PyPDF2, Pandas) that cleaned thousands of UCI PDF/HTML documents into training-ready text for iGPT.</li>
+            <li>Evaluated GPT-3.5 outputs on UCI-specific queries during early-stage iGPT development — before it evolved into ZotGPT.</li>
+          </ul>
+          <div class="etags"><span>Python</span><span>Pandas</span><span>BeautifulSoup</span><span>PyPDF2</span><span>GPT-3.5</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shead mono">Education</div>
+        <div class="entry">
+          <div class="etop">
+            <div><span class="etitle">B.S. Computer Science</span> <span class="eorg">· University of California, Irvine</span></div>
+            <span class="edate mono">Expected Jun 2027</span>
+          </div>
+          <ul>
+            <li>Coursework across data structures, algorithms, operating systems, databases, and machine learning.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="shead mono">Open source</div>
+        <p class="pnote">Patches merged and in review across <strong>redis-py</strong>, <strong>three.js</strong>, <strong>ComfyUI</strong>, <strong>pydantic-ai</strong>, and the <strong>Anthropic Python SDK</strong> — mostly correctness fixes in edge-case handling.</p>
+        <div class="etags"><span><a href="https://github.com/sean-kim05" target="_blank" rel="noopener">github.com/sean-kim05 ↗</a></span></div>
+      </section>
+
+      <footer>
+        <span class="mono">© 2026 Sean Kim</span>
+        <span class="mono">Built from scratch — no framework</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="term" id="term" hidden>
+    <div class="term-bar">
+      <span>Terminal — zsh</span>
+      <button class="term-close" id="termClose">esc ✕</button>
+    </div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-row">
+      <span class="term-ps">sean@portfolio:~$</span>
+      <input class="term-in" id="termIn" spellcheck="false" autocomplete="off" aria-label="terminal input"/>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
