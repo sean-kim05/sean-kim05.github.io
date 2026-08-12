@@ -17,7 +17,7 @@ Four pages of vanilla **HTML and CSS** — `index.html`, `experience.html`, `pro
 - **Benchmarked project write-ups** — the numbers on the projects page come from benchmark scripts in each repo, and each one states what it was measured against
 - Collapses to a single column at 900px, and honors `prefers-reduced-motion`
 
-`templates/` holds three earlier design directions (`constellation`, `cream-calm`, `plain`), kept for reference and excluded from the live site.
+A `.nojekyll` file tells GitHub Pages to skip Jekyll and publish the files as-is, which keeps deploys near-instant.
 
 ---
 
