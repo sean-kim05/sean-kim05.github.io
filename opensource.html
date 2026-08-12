@@ -45,123 +45,56 @@
 
     <main class="main">
       <h2 class="ptitle">Open source</h2>
-      <p class="psub">Patches merged into libraries I actually use. Mostly correctness work — edge cases that were quietly wrong, found while building something else and fixed upstream instead of worked around.</p>
-
-      <div class="metrics">
-        <div class="metric"><b>14</b><span class="mono">patches merged</span></div>
-        <div class="metric"><b>5</b><span class="mono">projects</span></div>
-        <div class="metric"><b>200k+</b><span class="mono">combined stars</span></div>
-      </div>
+      <p class="psub">Here are some of my contributions to libraries and repos I use.</p>
 
       <section>
-        <div class="shead mono">Merged</div>
-
         <div class="entry">
-          <div class="etop">
-            <div><span class="etitle">three.js</span> <span class="eorg">· JavaScript 3D library</span></div>
-            <span class="edate mono">114k ★ · 3 merged</span>
-          </div>
+          <div class="etop"><h3 class="etitle">three.js</h3></div>
           <ul class="prs">
-            <li>
-              <a href="https://github.com/mrdoob/three.js/pull/34035" target="_blank" rel="noopener"><span class="prnum mono">#34035</span> <span>AnimationObjectGroup: fix stale index bookkeeping in <code>uncache()</code> and <code>unsubscribe_()</code></span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/mrdoob/three.js/pull/34034" target="_blank" rel="noopener"><span class="prnum mono">#34034</span> <span>TorusGeometry: forward <code>thetaStart</code> and <code>thetaLength</code> in <code>fromJSON()</code></span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/mrdoob/three.js/pull/34016" target="_blank" rel="noopener"><span class="prnum mono">#34016</span> <span>Ray: handle empty spheres in <code>intersectSphere()</code></span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
+            <li><a href="https://github.com/mrdoob/three.js/pull/34035" target="_blank" rel="noopener"><span class="prnum mono">#34035</span> <span>Animation groups were holding onto stale indices after uncaching</span></a></li>
+            <li><a href="https://github.com/mrdoob/three.js/pull/34034" target="_blank" rel="noopener"><span class="prnum mono">#34034</span> <span>Torus geometry quietly lost two of its parameters when reloaded from JSON</span></a></li>
+            <li><a href="https://github.com/mrdoob/three.js/pull/34016" target="_blank" rel="noopener"><span class="prnum mono">#34016</span> <span>Ray intersection broke on empty spheres</span></a></li>
           </ul>
         </div>
 
         <div class="entry">
-          <div class="etop">
-            <div><span class="etitle">Strix</span> <span class="eorg">· open-source AI penetration testing tool</span></div>
-            <span class="edate mono">51k ★ · 2 merged</span>
-          </div>
+          <div class="etop"><h3 class="etitle">Strix</h3></div>
           <ul class="prs">
-            <li>
-              <a href="https://github.com/usestrix/strix/pull/689" target="_blank" rel="noopener"><span class="prnum mono">#689</span> <span>Config: make env vars win over persisted JSON across all aliases</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/usestrix/strix/pull/687" target="_blank" rel="noopener"><span class="prnum mono">#687</span> <span>TUI: show “more content available” for <code>view_request</code> over 15 lines</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
+            <li><a href="https://github.com/usestrix/strix/pull/689" target="_blank" rel="noopener"><span class="prnum mono">#689</span> <span>Environment variables weren&rsquo;t overriding saved config the way they should</span></a></li>
+            <li><a href="https://github.com/usestrix/strix/pull/687" target="_blank" rel="noopener"><span class="prnum mono">#687</span> <span>Long request views got cut off with nothing telling you there was more</span></a></li>
           </ul>
         </div>
 
         <div class="entry">
-          <div class="etop">
-            <div><span class="etitle">Pydantic AI</span> <span class="eorg">· AI agent framework</span></div>
-            <span class="edate mono">19k ★ · 3 merged</span>
-          </div>
+          <div class="etop"><h3 class="etitle">Pydantic AI</h3></div>
           <ul class="prs">
-            <li>
-              <a href="https://github.com/pydantic/pydantic-ai/pull/7357" target="_blank" rel="noopener"><span class="prnum mono">#7357</span> <span>Gate <code>RetryPromptPart</code> OpenTelemetry content on <code>include_content</code></span></a>
-              <span class="prwhen mono">Aug 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/pydantic/pydantic-ai/pull/6466" target="_blank" rel="noopener"><span class="prnum mono">#6466</span> <span>Fix <code>has_values()</code> returning <code>True</code> for all-zero usage details</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/pydantic/pydantic-ai/pull/6462" target="_blank" rel="noopener"><span class="prnum mono">#6462</span> <span>Fix <code>RenamedToolset</code> silently dropping a tool on a name collision</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
+            <li><a href="https://github.com/pydantic/pydantic-ai/pull/7357" target="_blank" rel="noopener"><span class="prnum mono">#7357</span> <span>Telemetry was recording prompt content even when you&rsquo;d asked it not to</span></a></li>
+            <li><a href="https://github.com/pydantic/pydantic-ai/pull/6466" target="_blank" rel="noopener"><span class="prnum mono">#6466</span> <span>Usage details reported as present when every value was zero</span></a></li>
+            <li><a href="https://github.com/pydantic/pydantic-ai/pull/6462" target="_blank" rel="noopener"><span class="prnum mono">#6462</span> <span>Renaming a toolset silently dropped a tool when two names collided</span></a></li>
           </ul>
         </div>
 
         <div class="entry">
-          <div class="etop">
-            <div><span class="etitle">redis-py</span> <span class="eorg">· official Redis Python client</span></div>
-            <span class="edate mono">13.6k ★ · 1 merged</span>
-          </div>
+          <div class="etop"><h3 class="etitle">redis-py</h3></div>
           <ul class="prs">
-            <li>
-              <a href="https://github.com/redis/redis-py/pull/4167" target="_blank" rel="noopener"><span class="prnum mono">#4167</span> <span>Add context manager support to <code>ConnectionPool</code></span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
+            <li><a href="https://github.com/redis/redis-py/pull/4167" target="_blank" rel="noopener"><span class="prnum mono">#4167</span> <span>Connection pools couldn&rsquo;t be used with a <code>with</code> block</span></a></li>
           </ul>
         </div>
 
         <div class="entry">
-          <div class="etop">
-            <div><span class="etitle">Prometheus Python client</span> <span class="eorg">· official instrumentation library</span></div>
-            <span class="edate mono">4.3k ★ · 5 merged</span>
-          </div>
+          <div class="etop"><h3 class="etitle">Prometheus Python client</h3></div>
           <ul class="prs">
-            <li>
-              <a href="https://github.com/prometheus/client_python/pull/1192" target="_blank" rel="noopener"><span class="prnum mono">#1192</span> <span>Parse the native histogram sum as a float</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/prometheus/client_python/pull/1191" target="_blank" rel="noopener"><span class="prnum mono">#1191</span> <span>Remove nameless collectors from the registry on unregister</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/prometheus/client_python/pull/1188" target="_blank" rel="noopener"><span class="prnum mono">#1188</span> <span>Fix operator precedence allowing exemplars on any metric type</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/prometheus/client_python/pull/1190" target="_blank" rel="noopener"><span class="prnum mono">#1190</span> <span>Do not emit a leading zero in <code>floatToGoString</code> exponents ≥ 10</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
-            <li>
-              <a href="https://github.com/prometheus/client_python/pull/1189" target="_blank" rel="noopener"><span class="prnum mono">#1189</span> <span>Validate Enum arguments before registering the collector</span></a>
-              <span class="prwhen mono">Jul 2026</span>
-            </li>
+            <li><a href="https://github.com/prometheus/client_python/pull/1192" target="_blank" rel="noopener"><span class="prnum mono">#1192</span> <span>Native histogram sums were parsed as the wrong type</span></a></li>
+            <li><a href="https://github.com/prometheus/client_python/pull/1191" target="_blank" rel="noopener"><span class="prnum mono">#1191</span> <span>Unregistering a collector left nameless ones behind in the registry</span></a></li>
+            <li><a href="https://github.com/prometheus/client_python/pull/1188" target="_blank" rel="noopener"><span class="prnum mono">#1188</span> <span>An operator precedence bug let exemplars onto any metric type</span></a></li>
+            <li><a href="https://github.com/prometheus/client_python/pull/1190" target="_blank" rel="noopener"><span class="prnum mono">#1190</span> <span>Exponents of 10 or more came out with an extra leading zero</span></a></li>
+            <li><a href="https://github.com/prometheus/client_python/pull/1189" target="_blank" rel="noopener"><span class="prnum mono">#1189</span> <span>Bad Enum arguments weren&rsquo;t caught until after the collector registered</span></a></li>
           </ul>
         </div>
       </section>
 
       <section>
-        <div class="shead mono">In review</div>
-        <p class="pnote">Open patches under review at <strong>Anthropic&rsquo;s Python SDK</strong>, <strong>Ollama</strong>, <strong>ComfyUI</strong>, <strong>redis-py</strong>, and the <strong>Prometheus Python client</strong>.</p>
-        <div class="etags"><span><a href="https://github.com/sean-kim05" target="_blank" rel="noopener">github.com/sean-kim05 ↗</a></span></div>
+        <p class="pnote">A few more are open at Anthropic&rsquo;s Python SDK, Ollama, and ComfyUI. Everything&rsquo;s on <a class="plink" href="https://github.com/sean-kim05" target="_blank" rel="noopener">my GitHub ↗</a>.</p>
       </section>
 
       <footer>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /templates/
+
+Sitemap: https://sean-kim05.github.io/sitemap.xml
