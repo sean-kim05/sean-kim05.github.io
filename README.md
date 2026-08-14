@@ -10,7 +10,9 @@ My personal portfolio — a hand-built static site (no framework, no build step)
 
 ## ✨ The site itself
 
-Four pages of vanilla **HTML and CSS** — `index.html`, `experience.html`, `projects.html`, `opensource.html` — sharing a single `style.css`. **Zero JavaScript**, zero dependencies, no build step. Warm paper theme on a system font stack, with a burnt-orange accent.
+Four pages of vanilla **HTML and CSS** — `index.html`, `experience.html`, `projects.html`, `opensource.html` — sharing a single `style.css`. No framework, no dependencies, no build step. Warm paper theme on a system font stack, with a burnt-orange accent.
+
+The only JavaScript is a 3.5KB async [GoatCounter](https://www.goatcounter.com/) tag for privacy-friendly analytics — no cookies, no consent banner, nothing that blocks rendering.
 
 - **Sticky left rail** carrying identity, nav, contact links, and the resume download; content scrolls independently on the right
 - **Paper-grain background** — a fine dot lattice under a radial mask, static rather than animated
