@@ -21,6 +21,8 @@ The only JavaScript is a 3.5KB async [GoatCounter](https://www.goatcounter.com/)
 
 A `.nojekyll` file tells GitHub Pages to skip Jekyll and publish the files as-is, which keeps deploys near-instant.
 
+URLs are extensionless — `/projects`, not `/projects.html`. GitHub Pages resolves those to the matching `.html` file automatically, so all internal links, canonicals, and the sitemap use the clean form. The `.html` URLs still work for anyone who has one bookmarked. Note that `python3 -m http.server` does *not* do this resolution, so clean URLs 404 locally; open the `.html` files directly when previewing offline.
+
 ---
 
 ## 🚀 Featured work
@@ -44,7 +46,7 @@ A `.nojekyll` file tells GitHub Pages to skip Jekyll and publish the files as-is
 
 ## 🌱 Open source
 
-**14 patches merged** into libraries I use — mostly correctness fixes for edge cases found while building something else and fixed upstream instead of worked around. Full list with links: [opensource.html](https://sean-kim05.github.io/opensource.html).
+**14 patches merged** into libraries I use — mostly correctness fixes for edge cases found while building something else and fixed upstream instead of worked around. Full list with links: [/opensource](https://sean-kim05.github.io/opensource).
 
 | Project | Merged | What it is |
 |---|---|---|
