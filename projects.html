@@ -4,10 +4,10 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Projects — Sean Kim</title>
-  <meta name="description" content="Projects by Sean Kim — CollabCode, Ada, Docent, and Briefly. Real-time systems and AI products built end to end, with benchmarks."/>
+  <meta name="description" content="Projects by Sean Kim — CollabCode, Ada, and Docent. Real-time systems and AI products built end to end, with benchmarks."/>
 
   <meta property="og:title" content="Projects — Sean Kim"/>
-  <meta property="og:description" content="Projects by Sean Kim — CollabCode, Ada, Docent, and Briefly. Real-time systems and AI products built end to end, with benchmarks."/>
+  <meta property="og:description" content="Projects by Sean Kim — CollabCode, Ada, and Docent. Real-time systems and AI products built end to end, with benchmarks."/>
   <meta property="og:url" content="https://sean-kim05.github.io/projects"/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="https://sean-kim05.github.io/assets/og.png"/>
@@ -45,7 +45,7 @@
 
     <main class="main">
       <h2 class="ptitle">Projects</h2>
-      <p class="psub">Four things I built end to end — design, backend, frontend, deploy. Demos are live; the numbers below come from benchmark scripts that live in each repo.</p>
+      <p class="psub">Three things I built end to end — design, backend, frontend, deploy. Demos are live where there's something to deploy; the numbers below come from benchmark scripts that live in each repo.</p>
 
       <section>
         <div class="proj">
@@ -74,11 +74,11 @@
           <div>
             <div class="ptop">
               <h3 class="pname">Ada</h3>
-              <span class="plock mono">in progress</span>
+              <span class="plock mono">currently building</span>
             </div>
-            <img class="pshot" src="assets/ada.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Ada dashboard with a live agent trace panel"/>
             <p class="pdesc">A personal agent cockpit. Give it a goal — "add a task to prep for the panel, then list my tasks" — and watch the trace panel stream each step as the agent plans, calls tools, and observes what came back.</p>
             <p class="pnote">Pydantic AI drives the agent loop with typed tool calls; Postgres, Redis, and Qdrant run in Docker behind it. Claude orchestrates, and a local Qwen-14B on Ollama picks up the cheap subtasks so routine steps don't cost API calls.</p>
+            <p class="caveat">Runs locally for now — the whole stack sits in Docker on my machine, so there's no demo to link yet.</p>
             <div class="stack"><span>FastAPI</span><span>Pydantic AI</span><span>React</span><span>TypeScript</span><span>Postgres</span><span>Redis</span><span>Qdrant</span><span>Claude</span><span>Qwen-14B / Ollama</span></div>
           </div>
         </div>
@@ -99,26 +99,6 @@
           </div>
         </div>
 
-        <div class="proj">
-          <div class="pnum mono">04</div>
-          <div>
-            <div class="ptop">
-              <h3 class="pname">Briefly</h3>
-              <a class="plink" href="https://briefly.skim8705.workers.dev" target="_blank" rel="noopener">live demo ↗</a>
-              <a class="plink" href="https://github.com/sean-kim05/briefly" target="_blank" rel="noopener">source ↗</a>
-            </div>
-            <img class="pshot" src="assets/briefly.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Briefly turning messy notes into a structured standup"/>
-            <p class="pdesc">AI standups at the edge. Paste messy notes about your day and get back a clean Yesterday / Today / Blockers standup, streamed token by token from Llama 3.3 70B.</p>
-            <p class="pnote">The whole thing runs on Cloudflare — a Worker handles routing, Workers AI runs the model, and a Durable Object per user holds up to 100 past standups. The weekly summary chains a second model call across the last seven. No servers, and nothing running when it's idle.</p>
-            <div class="metrics">
-              <div class="metric"><b>&lt;450 ms</b><span class="mono">p95 time to first token</span></div>
-              <div class="metric"><b>0</b><span class="mono">failures in 90 runs</span></div>
-              <div class="metric"><b>4.2 s</b><span class="mono">p50 weekly summary</span></div>
-            </div>
-            <p class="caveat">Measured against the deployed Worker from California, not a local dev server — Workers AI proxies to remote infrastructure in dev mode, so those numbers wouldn't mean anything.</p>
-            <div class="stack"><span>Cloudflare Workers</span><span>Durable Objects</span><span>Workers AI</span><span>Llama 3.3 70B</span><span>SSE</span></div>
-          </div>
-        </div>
       </section>
 
       <footer>
